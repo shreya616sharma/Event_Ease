@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club Head Dashboard - EventEase</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Head_of_club_dashboard.css">
+ 
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container">
+            <nav class="header-nav">
+                <a href="index.html" class="logo-link">EventEase</a>
+                <div class="nav-links">
+                    <a href="#" class="active" onclick="showSection('dashboard', this)">Dashboard</a>
+                    <a href="#" onclick="showSection('request-event', this)">Request Event</a>
+                    <a href="#" onclick="showSection('manage-events', this)">Manage Events</a>
+                </div>
+                <a href="index.html" class="logout-button">Logout</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="dashboard-section active">
+            <div class="page-header">
+                <h1 class="page-title">Tech Club Dashboard</h1>
+                <p class="page-subtitle">Here's a snapshot of your club's activity.</p>
+            </div>
+            <div class="grid-layout" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+                <div class="card stat-card">
+                    <p class="stat-number">78</p>
+                    <p class="stat-label">Total Club Members</p>
+                </div>
+                <div class="card stat-card">
+                    <p class="stat-number">112</p>
+                    <p class="stat-label">AI Workshop Registrations</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Request Event Section -->
+        <section id="request-event" class="dashboard-section">
+            <div class="page-header">
+                <h1 class="page-title">Request a New Event</h1>
+                <p class="page-subtitle">Fill out the details below to submit your event for approval.</p>
+            </div>
+            <div class="card">
+                <form class="event-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="event-name" class="form-label">Event Name</label>
+                            <input type="text" id="event-name" class="form-input" placeholder="e.g., Annual Hackathon">
+                        </div>
+                         <!-- <div class="form-group">
+                            <label for="event-venue" class="form-label">Venue</label>
+                            <input type="text" id="event-venue" class="form-input" placeholder="e.g., Tech Park Auditorium">
+                        </div> -->
+                        <div class="form-group">
+                    <label for="event-venue" class="form-label">Venue</label>
+                    <select id="event-venue" class="form-input">
+                        <option value="">-- Select Venue --</option>
+                        <option value="block">Turing Block</option>
+                        <option value="block">Rockfeller Block</option>
+                        <option value="block">Fleming Block</option>
+                        <option value="block">Galileo Block</option>
+                        <option value="block">MartinLuther Block</option>
+                        <option value="block">Pythagorous Block</option>
+                        <option value="block">Le Corbusier Block</option>
+                        <option value="block">Explotorium</option>
+                    </select>
+                    </div>
+
+                        <div class="form-group">
+                            <label for="event-date" class="form-label">Date</label>
+                            <input type="date" id="event-date" class="form-input" min="2025-09-08">
+                        </div>
+                        <div class="form-group">
+                            <label for="event-time" class="form-label">Time</label>
+                            <input type="time" id="event-time" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="event-department" class="form-label">Target Department</label>
+                            <input type="text" id="event-department" class="form-input" placeholder="e.g., All Departments">
+                        </div>
+                        <div class="form-group">
+                            <label for="event-fees" class="form-label">Fees (if any)</label>
+                            <input type="number" id="event-fees" class="form-input" placeholder="Enter 0 for free events">
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="event-description" class="form-label">Description</label>
+                            <textarea id="event-description" class="form-input" rows="4" placeholder="Briefly describe the event..."></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="form-button">Send Request to Admin</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Manage Events Section -->
+        <section id="manage-events" class="dashboard-section">
+            <div class="page-header">
+                <h1 class="page-title">Manage Your Events</h1>
+                <p class="page-subtitle">Track the status of all your club's events.</p>
+            </div>
+            <div class="tab-nav">
+                <button class="tab-button active" onclick="showTab('manage-events', 'upcoming-events', this)">Upcoming</button>
+                <button class="tab-button" onclick="showTab('manage-events', 'pending-requests', this)">Pending Requests</button>
+                <button class="tab-button" onclick="showTab('manage-events', 'past-events', this)">Past</button>
+            </div>
+            
+            <div id="upcoming-events" class="tab-content active">
+                <div class="grid-layout" style="grid-template-columns: 1fr;"> <!-- Single column for upcoming events -->
+                    <div class="card event-card">
+                        <h3 class="card-title">AI & Machine Learning Workshop</h3>
+                        <p>Date: Sept 5, 2025</p>
+                        <span class="card-status status-approved">Approved</span>
+                        <!-- NEW: Registered Students List -->
+                        <div class="registered-students-list">
+                            <h4 class="list-title">Registered Students (3)</h4>
+                            <div class="student-card">
+                                <svg class="student-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" /></svg>
+                                <div class="student-info">
+                                    <p class="student-name">Anjali Sharma</p>
+                                    <p class="student-department">Computer Science</p>
+                                </div>
+                            </div>
+                            <div class="student-card">
+                                <svg class="student-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" /></svg>
+                                <div class="student-info">
+                                    <p class="student-name">Rohan Verma</p>
+                                    <p class="student-department">Mechanical Engineering</p>
+                                </div>
+                            </div>
+                             <div class="student-card">
+                                <svg class="student-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" /></svg>
+                                <div class="student-info">
+                                    <p class="student-name">Priya Patel</p>
+                                    <p class="student-department">Biotechnology</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="pending-requests" class="tab-content">
+                <div class="grid-layout">
+                    <div class="card event-card">
+                        <h3 class="card-title">Annual Hackathon</h3>
+                        <p>Date: Oct 15, 2025</p>
+                        <span class="card-status status-pending">Pending Approval</span>
+                    </div>
+                    <!-- NEW: More pending events -->
+                    <div class="card event-card">
+                        <h3 class="card-title">Guest Lecture: The Future of AI</h3>
+                        <p>Date: Sept 20, 2025</p>
+                        <span class="card-status status-pending">Pending Approval</span>
+                    </div>
+                </div>
+            </div>
+            <div id="past-events" class="tab-content">
+                <div class="grid-layout">
+                    <div class="card event-card">
+                        <h3 class="card-title">Intro to Web Dev</h3>
+                        <p>Date: Aug 10, 2025</p>
+                        <span class="card-status status-past">Completed</span>
+                    </div>
+                    <!-- NEW: More past events -->
+                    <div class="card event-card">
+                        <h3 class="card-title">Coding Competition 2025</h3>
+                        <p>Date: July 22, 2025</p>
+                        <span class="card-status status-past">Completed</span>
+                    </div>
+                     <div class="card event-card">
+                        <h3 class="card-title">Tech-Talks: Blockchain</h3>
+                        <p>Date: June 05, 2025</p>
+                        <span class="card-status status-past">Completed</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // --- Navigation for main page sections ---
+        function showSection(sectionId, clickedLink) {
+            document.querySelectorAll('.dashboard-section').forEach(section => section.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+
+            document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active'));
+            clickedLink.classList.add('active');
+        }
+        
+        // --- Navigation for tabbed content within a section ---
+        function showTab(sectionId, tabId, clickedButton) {
+            const section = document.getElementById(sectionId);
+            section.querySelectorAll('.tab-button').forEach(button => button.classList.remove('active'));
+            clickedButton.classList.add('active');
+            
+            section.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        // Prevent form submission and show an alert for demo purposes
+        document.querySelector('.event-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Your event request has been sent to the admin for approval!');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
+
