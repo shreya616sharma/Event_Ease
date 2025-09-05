@@ -1,0 +1,204 @@
+/* General Body and Background Styles */
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(300deg, #f5f3ff, #eef2ff, #fde2e4);
+    background-size: 180% 180%;
+    animation: dreamyGradientAnimation 18s ease infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+@keyframes dreamyGradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Main container for the form cards */
+.main-container {
+    width: 100%;
+    max-width: 28rem; /* 448px */
+}
+
+/* Base card styling */
+.card {
+    background-color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid #e5e7eb;
+    border-radius: 1rem; /* 16px */
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+    padding: 2rem; /* 32px */
+    text-align: center;
+}
+
+/* Form container animation */
+.form-container {
+    display: none;
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Typography */
+.logo {
+    font-size: 1.875rem; /* 30px */
+    font-weight: 700;
+    color: #1e293b;
+    text-decoration: none;
+}
+h1, h2 {
+    font-weight: 700;
+    color: #1e293b;
+}
+h1 {
+    font-size: 1.5rem; /* 24px */
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+h2 {
+    font-size: 1.5rem; /* 24px */
+    margin-bottom: 0.25rem;
+}
+.subtitle {
+    color: #64748b;
+    margin-bottom: 2rem;
+}
+
+/* Role Selection Buttons */
+.role-button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.role-button {
+    width: 100%;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 1.5rem;
+    border-radius: 1rem; /* 16px */
+    border-width: 2px;
+    border-style: solid;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+.role-button:hover {
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+    transform: scale(1.05);
+}
+.role-button .icon-container {
+    padding: 0.75rem; /* 12px */
+    border-radius: 0.5rem; /* 8px */
+}
+.role-button .icon {
+    width: 1.5rem; /* 24px */
+    height: 1.5rem;
+}
+.role-button h3 {
+    font-size: 1.125rem; /* 18px */
+    font-weight: 600;
+    color: #1e293b;
+}
+.role-button p {
+    font-size: 0.875rem; /* 14px */
+    color: #64748b;
+}
+
+/* Button Color Variants */
+.student-button { border-color: #ddd6fe; }
+.student-button:hover { border-color: #a78bfa; }
+.student-button .icon-container { background-color: #ede9fe; }
+.student-button .icon { color: #8b5cf6; }
+
+.club-head-button { border-color: #bbf7d0; }
+.club-head-button:hover { border-color: #4ade80; }
+.club-head-button .icon-container { background-color: #dcfce7; }
+.club-head-button .icon { color: #22c55e; }
+
+.admin-button { border-color: #bae6fd; }
+.admin-button:hover { border-color: #38bdf8; }
+.admin-button .icon-container { background-color: #e0f2fe; }
+.admin-button .icon { color: #0ea5e9; }
+
+/* Form Styles */
+.back-button {
+    display: inline-block;
+    color: #64748b;
+    margin-bottom: 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-size: 1rem;
+}
+.back-button:hover {
+    color: #1e293b;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.form-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    box-sizing: border-box; /* Ensures padding doesn't affect width */
+    transition: box-shadow 0.2s;
+}
+.form-input:focus {
+    outline: none;
+}
+.form-input.student-focus:focus { box-shadow: 0 0 0 2px #a78bfa; }
+.form-input.club-head-focus:focus { box-shadow: 0 0 0 2px #4ade80; }
+.form-input.admin-focus:focus { box-shadow: 0 0 0 2px #38bdf8; }
+
+.submit-button {
+    width: 100%;
+    color: white;
+    font-weight: 600;
+    padding: 0.8rem 0;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+    transition: background-color 0.2s;
+}
+.student-submit { background-color: #7c3aed; }
+.student-submit:hover { background-color: #6d28d9; }
+
+.club-head-submit { background-color: #16a34a; }
+.club-head-submit:hover { background-color: #15803d; }
+
+.admin-submit { background-color: #0284c7; }
+.admin-submit:hover { background-color: #0369a1; }
+
+/* Switch form link */
+.switch-form-text {
+    text-align: center;
+    font-size: 0.875rem;
+    color: #64748b;
+    margin-top: 1.5rem;
+}
+.switch-form-button {
+    font-weight: 600;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+.switch-form-button:hover { text-decoration: underline; }
+.switch-form-button.student-link { color: #7c3aed; }
+.switch-form-button.club-head-link { color: #16a34a; }
+.switch-form-button.admin-link { color: #0284c7; }
