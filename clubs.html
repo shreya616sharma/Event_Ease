@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Clubs - EventEase</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="clubs.css" />
+</head>
+<body>
+    <div class="header">
+        <button class="back-btn" onclick="window.history.back()" aria-label="Go back">&#8592;</button>
+        <h1>Clubs</h1>
+        <div style="width: 50px;"></div>
+    </div>
+    <div class="search-container">
+        <div class="search-wrapper">
+            <img src="https://img.icons8.com/?size=100&id=112468&format=png&color=7950F2" alt="Search Icon" class="search-icon" />
+            <input type="text" class="search-bar" placeholder="Search clubs..." aria-label="Search clubs" />
+        </div>
+    </div>
+    <div class="clubs-container">
+        <div class="club-card" data-name="Tech Club" data-info="Technology and innovation club" data-members="120" style="background-image: url('TechClub.png');">
+            <div class="club-name">Tech Club</div>
+            <div class="club-info">Technology and innovation club</div>
+            <div class="club-members">Members: 120</div>
+            <div class="favorite-star" tabindex="0" role="button" aria-label="Add to favorites">&#9734;</div>
+        </div>
+        <div class="club-card" data-name="Dance Club" data-info="Dance and performance arts" data-members="85" style="background-image: url('DanceClub.png');">
+            <div class="club-name">Dance Club</div>
+            <div class="club-info">Dance and performance arts</div>
+            <div class="club-members">Members: 85</div>
+            <div class="favorite-star" tabindex="0" role="button" aria-label="Add to favorites">&#9734;</div>
+        </div>
+        <div class="club-card" data-name="Music Club" data-info="Music and jam sessions" data-members="95" style="background-image: url('MusicClub.png');">
+            <div class="club-name">Music Club</div>
+            <div class="club-info">Music and jam sessions</div>
+            <div class="club-members">Members: 95</div>
+            <div class="favorite-star" tabindex="0" role="button" aria-label="Add to favorites">&#9734;</div>
+        </div>
+        <div class="club-card" data-name="Art Club" data-info="Visual arts and exhibitions" data-members="70" style="background-image: url('image.png');">
+            <div class="club-name">Art Club</div>
+            <div class="club-info">Visual arts and exhibitions</div>
+            <div class="club-members">Members: 70</div>
+            <div class="favorite-star" tabindex="0" role="button" aria-label="Add to favorites">&#9734;</div>
+        </div>
+        <div class="club-card" data-name="Science Club" data-info="Science fairs and projects" data-members="110" style="background-image: url('image copy 3.png');">
+            <div class="club-name">Science Club</div>
+            <div class="club-info">Science fairs and projects</div>
+            <div class="club-members">Members: 110</div>
+            <div class="favorite-star" tabindex="0" role="button" aria-label="Add to favorites">&#9734;</div>
+        </div>
+        <div class="club-card" data-name="Charity Club" data-info="Community service and charity" data-members="60" style="background-image: url('image copy 4.png');">
+            <div class="club-name">Charity Club</div>
+            <div class="club-info">Community service and charity</div>
+            <div class="club-members">Members: 60</div>
+            <div class="favorite-star" tabindex="0" role="button" aria-label="Add to favorites">&#9734;</div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="login-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1">
+        <div class="modal-content">
+            <button class="modal-close-btn" aria-label="Close modal">&times;</button>
+            <h2 id="modal-title">Login Required</h2>
+            <p class="modal-message">You have to login first to add to favorites.</p>
+        </div>
+    </div>
+
+    <script src="clubs.js"></script>
+</body>
+</html>
