@@ -79,7 +79,7 @@
             border-bottom-color: #7c3aed;
         }
         .logout-button {
-            background-color: #ef4444; /* red-500 */
+            background-color: #ef4444; 
             color: white;
             padding: 0.625rem 1.25rem;
             border-radius: 0.5rem;
@@ -88,7 +88,7 @@
             transition: background-color 0.2s;
         }
         .logout-button:hover {
-            background-color: #dc2626; /* red-600 */
+            background-color: #dc2626; 
         }
 
         /* Main Content */
@@ -197,18 +197,14 @@
             grid-template-columns: 1fr;
             gap: 2.5rem;
             margin-top: 2.5rem;
+            margin-bottom: 2.5rem;
         }
 
         @media (min-width: 1024px) {
             .dashboard-summary-grid {
-                /* Changed proportions for better balance and spacing */
-                grid-template-columns: 3fr 2fr;
+                /* 1fr means one part of the available space */
+                grid-template-columns: 3fr 1fr;
                 gap: 1.5rem;
-            }
-            
-            /* Specific override to ensure the single event card in the dashboard summary fills its column */
-            .dashboard-summary-grid .grid-layout {
-                grid-template-columns: 1fr;
             }
         }
         
@@ -296,7 +292,7 @@
         .card-description {
             margin-top: 0;
             color: #475569;
-            flex-grow: 1; /* Pushes button to the bottom */
+            flex-grow: 1; 
         }
         .card-button {
             margin-top: 1.5rem;
@@ -320,11 +316,131 @@
             background-color: #475569;
         }
 
+/* Responsive adjustments for the grid */
+@media (max-width: 1023px) {
+    .events-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 639px) {
+    .events-container {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+/* Event Card Styles */
+    .event-card-container {
+    position: relative;
+}
+.event-card {
+    background-color: white;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    color: inherit;
+    height: 15rem;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.5rem;
+    background-size: cover;
+    background-position: center;
+}
+.event-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent 60%);
+}
+.event-card * {
+    position: relative;
+    z-index: 10;
+}
+.event-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    z-index: 2;
+}
+.event-details {
+    font-size: 1rem;
+    color: #d1d5db;
+    margin: 0.2rem 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Modal Styles - CSS Only */
+.modal-toggle {
+    display: none;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 20;
+}
+
+.modal-toggle:checked + .modal-overlay {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+    max-width: 90%;
+    width: 500px;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+    }
+
+.modal-toggle:checked + .modal-overlay .modal-content {
+    transform: scale(1);
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1.25rem;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #9ca3af;
+    line-height: 1;
+    transition: color 0.2s;
+}
     </style>
 </head>
 <body>
-
-    <header class="site-header">
+     <header class="site-header">
         <div class="container">
             <nav class="header-nav">
                 <a href="index.html" class="logo-link">EventEase</a>
@@ -333,14 +449,14 @@
                     <a href="#" onclick="showSection('events', this)">Events</a>
                     <a href="#" onclick="showSection('clubs', this)">Clubs</a>
                 </div>
-                <a href="index.html" class="logout-button">Logout</a>
+                <a href="index2.html" class="logout-button">Logout</a>
             </nav>
         </div>
     </header>
 
     <main class="container">
         <!-- My Dashboard Section -->
-        <section id="my-dashboard" class="dashboard-section active">
+        <section id="my-dashboard" ">
             <div class="page-header">
                 <h1 class="page-title">My Dashboard</h1>
                 <p class="page-subtitle">Welcome back, Alex!</p>
@@ -350,17 +466,47 @@
                 <div class="summary-column">
                     <h2 class="subsection-title">My Upcoming Events</h2>
                     <div class="grid-layout">
-                        <div class="card event-card" data-poster="https://placehold.co/400x200/db2777/ffffff?text=Performance" data-title="Annual Dance Showcase" data-date="Sept 12, 2025 at 8:00 PM" data-venue="Grand Auditorium" data-club="Dance Club" data-description="A night of spectacular performances awaits.">
-                            <h3 class="card-title">Annual Dance Showcase</h3>
-                            <div class="card-details-list">
-                                <p class="card-detail-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg> <span>Sept 12, 2025 at 8:00 PM</span></p>
-                                <p class="card-detail-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg> <span>Grand Auditorium</span></p>
-                            </div>
-                            <button class="card-button secondary view-button">View</button>
-                        </div>
-                        <!-- More registered events could be listed here -->
-                    </div>
+
+            <div class="event-card-container">
+            <input type="checkbox" id="modal-1" class="modal-toggle">
+            <label for="modal-1" class="event-card" style="background-image: url('tech.jpg');">
+                <h2 class="event-title">Tech Talk: The Future of AI</h2>
+                <p class="event-details">Venue: Auditorium A</p>
+                <p class="event-details">Date: 2025-05-15</p>
+                <p class="event-details">Time: 3:00 PM - 5:00 PM</p>
+                <button class="card-button secondary view-button">View</button>
+
+            </label>
+            <div class="modal-overlay">
+                <div class="modal-content">
+                    <label for="modal-1" class="modal-close-btn">&times;</label>
+                    <h2 class="event-title">Tech Talk: The Future of AI</h2>
+                    <p class="event-details">Venue: Auditorium A</p>
+                    <p class="event-details">Date: 2025-05-15</p>
+                    <p class="event-details">Time: 3:00 PM - 5:00 PM</p>
                 </div>
+            </div>
+        </div>
+            <div class="event-card-container">
+            <input type="checkbox" id="modal-6" class="modal-toggle">
+            <label for="modal-6" class="event-card" style="background-image: url('Charity Run.jpg');">
+                <h2 class="event-title">Charity Run</h2>
+                <p class="event-details">Venue: Campus Grounds</p>
+                <p class="event-details">Date: 2025-06-15</p>
+                <p class="event-details">Time: 7:00 AM - 12:00 PM</p>
+                <button class="card-button secondary view-button">View</button>
+                <!-- to use button in card will have to use js function , not in syllabus yet -->
+            </label>
+            <div class="modal-overlay">
+                <div class="modal-content">
+                    <label for="modal-6" class="modal-close-btn">&times;</label>
+                    <h2 class="event-title">Charity Run</h2>
+                    <p class="event-details">Venue: Campus Grounds</p>
+                    <p class="event-details">Date: 2025-06-15</p>
+                    <p class="event-details">Time: 7:00 AM - 12:00 PM</p>
+                </div>
+            </div>
+        </div>
                 <div class="summary-column">
                     <h2 class="subsection-title">My Clubs</h2>
                     <div class="card">
