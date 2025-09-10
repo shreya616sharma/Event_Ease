@@ -19,8 +19,7 @@ ________________________________________________________________________________
 
 <h3>💻 Technologies Used</h3>
 
-Frontend: HTML, CSS, JavaScript  
-Backend: ASP.NET / C# (as per Visual Studio 2022 setup)  
+Frontend: HTML, CSS, JavaScript   
 Database: SQL Server 2025  
 _____________________________________________________________________________________________________________________________
 
