@@ -58,7 +58,7 @@
             <p class="subtitle" style="margin-bottom: 1.5rem;">Create an account to get started.</p>
             <form>
                 <input class="form-input student-focus" type="text" placeholder="Full Name" name="full_name" required pattern="[A-Za-z\s]+">
-                <input class="form-input student-focus" type="email" placeholder="Official Chitkara Email Address" name="email" required pattern="[a-zA-Z0-9.]+@chitkara\.edu\.in">
+                <input class="form-input student-focus" type="email" placeholder="Official Chitkara Email Address" name="email" required>
                 <input class="form-input student-focus" type="tel" placeholder="Contact Number" name="contact" required pattern="[0-9]{10}">
                 <input class="form-input student-focus" type="text" placeholder="Department" name="department" required pattern="[A-Za-z\s]+">
                 <input class="form-input student-focus" type="password" placeholder="Password" name="password" required>
@@ -73,7 +73,7 @@
             <h2>Student Login</h2>
             <p class="subtitle" style="margin-bottom: 1.5rem;">Welcome back!</p>
             <form id="student-login">
-                <input class="form-input student-focus" type="email" placeholder="Email Address" required>
+                <input class="form-input student-focus" type="email" placeholder="Official Chitkara Email Address" name="email" required>
                 <input class="form-input student-focus" type="password" placeholder="Password" required>
                 <button type="submit" class="submit-button student-submit">Log In</button>
             </form>
@@ -87,7 +87,7 @@
             <p class="subtitle" style="margin-bottom: 1.5rem;">Register your club to post events.</p>
             <form>
                 <input class="form-input club-head-focus" type="text" placeholder="Full Name" required pattern="[A-Za-z\s]+" >
-                <input class="form-input club-head-focus" type="email" placeholder="Email Address" required>
+                <input class="form-input student-focus" type="email" placeholder="Official Chitkara Email Address" name="email" required>
                 <input class="form-input club-head-focus" type="text" placeholder="Club Name" required>
                 <input class="form-input club-head-focus" type="password" placeholder="Password" required>
                 <button type="submit" class="submit-button club-head-submit">Register Club</button>
@@ -101,7 +101,7 @@
             <h2>Club Head Login</h2>
             <p class="subtitle" style="margin-bottom: 1.5rem;">Welcome back!</p>
             <form id="club-head-login">
-                <input class="form-input club-head-focus" type="email" placeholder="Email Address" required>
+                <input class="form-input student-focus" type="email" placeholder="Official Chitkara Email Address" name="email" required>
                 <input class="form-input club-head-focus" type="password" placeholder="Password" required>
                 <button type="submit" class="submit-button club-head-submit">Log In</button>
             </form>
@@ -114,7 +114,7 @@
             <h2>Admin Sign Up</h2>
             <p class="subtitle" style="margin-bottom: 1.5rem;">Create a new administrator account.</p>
             <form>
-                <input class="form-input admin-focus" type="email" placeholder="Email Address" required pattern="[a-zA-Z0-9.]+@chitkara\.edu\.in">
+                <input class="form-input student-focus" type="email" placeholder="Official Chitkara Email Address" name="email" required>
                 <input class="form-input admin-focus" type="password" placeholder="Password" required>
                 <button type="submit" class="submit-button admin-submit">Create Admin Account</button>
             </form>
@@ -127,7 +127,7 @@
             <h2>Admin Login</h2>
             <p class="subtitle" style="margin-bottom: 1.5rem;">Please enter your credentials.</p>
             <form id="admin-login">
-                <input class="form-input admin-focus" type="email" placeholder="Email Address" required>
+                <input class="form-input student-focus" type="email" placeholder="Official Chitkara Email Address" name="email" required>
                 <input class="form-input admin-focus" type="password" placeholder="Password" required>
                 <button type="submit" class="submit-button admin-submit">Log In</button>
             </form>

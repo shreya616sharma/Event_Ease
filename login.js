@@ -39,3 +39,27 @@ document.getElementById('admin-login').addEventListener('submit', function(event
     // Redirect to admin dashboard
     window.location.href = 'admin_dashboard.html';
 });
+
+
+// authentication for chitkara email
+document.addEventListener('DOMContentLoaded', () => {
+    // Select all inputs intended for email and set a Chitkara-only pattern
+    const emailInputs = document.querySelectorAll('input[type="email"], input[name="email"]');
+
+    // Define the regular expression pattern as a string
+    // The backslash (\) is escaped with another backslash (\\) in the string literal
+    const chitkaraPattern = "[a-zA-Z0-9.]+@chitkara\\.edu\\.in";
+
+    // Apply the pattern and a helpful title to each matched input
+    emailInputs.forEach(input => {
+        try {
+            input.setAttribute('pattern', chitkaraPattern);
+            input.setAttribute('title', 'Please use your official @chitkara.edu.in email address.');
+            // Ensure the input has a name so server-side scripts can read it if needed
+            if (!input.name) input.name = 'email';
+        } catch (e) {
+            // ignore silently if node is not an element or attribute cannot be set
+            console.warn('Could not set pattern on input', input, e);
+        }
+    });
+});
