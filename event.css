@@ -5,7 +5,7 @@ body {
     animation: dreamy-gradient-animation 18s ease infinite;
     color: #334155;
     margin: 0;
-    padding: 2rem;
+    padding: 6rem 2rem 2rem 2rem;
 }
 @keyframes dreamy-gradient-animation {
     0% {
@@ -170,29 +170,7 @@ h1 {
     color: #4b5563;
     white-space: normal;
 }
-.header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 1.5rem;
-}
-.back-btn {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: #7c3aed;
-    border: none;
-    color: white;
-    font-size: 1.5rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.3s ease;
-}
-.back-btn:hover {
-    background-color: #6d28d9;
-}
+
 .search-bar {
     width: 100%;
     max-width: 600px;

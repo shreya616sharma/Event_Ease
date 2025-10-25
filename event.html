@@ -7,14 +7,26 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"  />
+    <link rel="stylesheet" href="index2.css" />
     <link rel="stylesheet" href="event.css" />
 </head>
     <body>
-        <div class="header">
-            <button class="back-btn" onclick="window.location.href='index.html'" aria-label="Go back">&#8592;</button>
-            <h1>Upcoming Events</h1>
-            <div style="width: 50px;"></div> <!-- spacer to balance flex -->
-        </div>
+        <header class="site-header sticky-header">
+            <div class="container">
+                <nav class="header-nav">
+                    <a href="index.html" class="logo-link">EventEase</a>
+                    <div class="nav-links">
+                        <a href="index.html" >Home</a>
+                        <a href="event.html">Events</a>
+                        <a href="clubs.html">Clubs</a>
+                        <a href="about.html">About us</a>
+                    </div>
+                    <div class="header-actions">
+                        <a href="login.html" class="login-button">Login/Signup</a>
+                    </div>
+                </nav>
+            </div>
+        </header>
         <div class="search-container">
             <div class="search-wrapper">
                 <!-- <span class="search-icon">https://icons8.com/icon/112468/search</span> -->
