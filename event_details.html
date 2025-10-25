@@ -72,73 +72,12 @@
         const urlParams = new URLSearchParams(window.location.search);
         const eventId = urlParams.get('id');
 
-        // Mock event data (in a real app, this would be fetched from a server)
-        const events = {
-            'upcoming-1': {
-                name: 'AI & Machine Learning Workshop',
-                date: 'Sept 5, 2025',
-                time: '10:00 AM - 12:00 PM',
-                venue: 'Turing Block',
-                description: 'Learn the basics of AI and machine learning.',
-                status: 'Approved',
-                photo: 'TechClub.png',
-                registrations: [
-                    { name: 'Anjali Sharma', department: 'Computer Science' },
-                    { name: 'Rohan Verma', department: 'Mechanical Engineering' },
-                    { name: 'Priya Patel', department: 'Biotechnology' }
-                ]
-            },
-            'pending-1': {
-                name: 'Annual Hackathon',
-                date: 'Oct 15, 2025',
-                time: '9:00 AM - 6:00 PM',
-                venue: 'Rockfeller Block',
-                description: 'A 24-hour coding competition.',
-                status: 'Pending Approval',
-                photo: 'tech.jpg',
-                registrations: []
-            },
-            'pending-2': {
-                name: 'Guest Lecture: The Future of AI',
-                date: 'Sept 20, 2025',
-                time: '2:00 PM - 4:00 PM',
-                venue: 'Fleming Block',
-                description: 'Expert talk on AI advancements.',
-                status: 'Pending Approval',
-                photo: 'Science Fair.jpg',
-                registrations: []
-            },
-            'past-1': {
-                name: 'Intro to Web Dev',
-                date: 'Aug 10, 2025',
-                time: '11:00 AM - 1:00 PM',
-                venue: 'Galileo Block',
-                description: 'Basic web development workshop.',
-                status: 'Completed',
-                photo: 'DanceClub.png',
-                registrations: []
-            },
-            'past-2': {
-                name: 'Coding Competition 2025',
-                date: 'July 22, 2025',
-                time: '10:00 AM - 4:00 PM',
-                venue: 'Le Corbusier Block',
-                description: 'Annual coding competition.',
-                status: 'Completed',
-                photo: 'MusicClub.png',
-                registrations: []
-            },
-            'past-3': {
-                name: 'Tech-Talks: Blockchain',
-                date: 'June 05, 2025',
-                time: '3:00 PM - 5:00 PM',
-                venue: 'Pythagorous Block',
-                description: 'Discussion on blockchain technology.',
-                status: 'Completed',
-                photo: 'Art Exhibition.jpg',
-                registrations: []
-            }
-        };
+        // Get events data from localStorage (shared with dashboard)
+        function getEventsData() {
+            return JSON.parse(localStorage.getItem('eventsData')) || {};
+        }
+
+        const events = getEventsData();
 
         if (eventId && events[eventId]) {
             const event = events[eventId];

@@ -17,9 +17,10 @@
             <nav class="header-nav">
                 <a href="index.html" class="logo-link">EventEase</a>
                 <div class="nav-links">
-                    <a href="#" class="active" onclick="showSection('dashboard', this)">Dashboard</a>
-                    <a href="#" onclick="showSection('request-event', this)">Request Event</a>
-                    <a href="#" onclick="showSection('manage-events', this)">Manage Events</a>
+                    <a href="#dashboard" class="active">Dashboard</a>
+                    <a href="#request-event">Request Event</a>
+                    <a href="#manage-events">Manage Events</a>
+                    <!-- <a href="#manage-members">Manage Members</a> -->
                 </div>
                 <a href="index.html" class="logout-button">Logout</a>
             </nav>
@@ -34,13 +35,81 @@
                 <p class="page-subtitle">Here's a snapshot of your club's activity.</p>
             </div>
             <div class="grid-layout" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
-                <div class="card stat-card">
+                <a href="#manage-members" class="card stat-card stat-link">
                     <p class="stat-number">78</p>
                     <p class="stat-label">Total Club Members</p>
+                </a>
+                <a href="#manage-events" class="card stat-card stat-link" onclick="showSection('manage-events'); showTab('manage-events', 'pending-requests', document.querySelector('#manage-events .tab-button:nth-child(2)'));">
+                    <p class="stat-number">3</p>
+                    <p class="stat-label">Pending Requests</p>
+                </a>
+                <a href="#manage-events" class="card stat-card stat-link" onclick="showSection('manage-events'); showTab('manage-events', 'upcoming-events', document.querySelector('#manage-events .tab-button:nth-child(1)'));">
+                    <p class="stat-number">5</p>
+                    <p class="stat-label">Upcoming Events</p>
+                </a>
+                <a href="#manage-events" class="card stat-card stat-link">
+                    <p class="stat-number">245</p>
+                    <p class="stat-label">Total Registrations</p>
+                </a>
+            </div>
+
+            <!-- Quick Actions Section -->
+            <div class="quick-actions">
+                <h2 class="section-title">Quick Actions</h2>
+                <div class="actions-grid">
+                    <button class="action-button primary" onclick="showSection('request-event');">Request a New Event</button>
+                    <button class="action-button secondary" onclick="showSection('manage-members');">Manage Members</button>
                 </div>
-                <div class="card stat-card">
-                    <p class="stat-number">112</p>
-                    <p class="stat-label">AI Workshop Registrations</p>
+            </div>
+
+            <!-- Dashboard Widgets -->
+            <div class="widgets-layout">
+                <div class="widget">
+                    <h3 class="widget-title">Upcoming Events</h3>
+                    <div class="widget-list">
+                        <div class="widget-item" onclick="window.location.href='event_details.html?id=upcoming-1'">
+                            <h4 class="widget-item-title">AI & Machine Learning Workshop</h4>
+                            <p class="widget-item-date">Sept 5, 2025 (10:00 AM)</p>
+                            <p class="widget-item-metric">Registrations: 3</p>
+                        </div>
+                        <div class="widget-item" onclick="window.location.href='event_details.html?id=upcoming-2'">
+                            <h4 class="widget-item-title">Coding Bootcamp</h4>
+                            <p class="widget-item-date">Sept 15, 2025 (2:00 PM)</p>
+                            <p class="widget-item-metric">Registrations: 12</p>
+                        </div>
+                        <div class="widget-item" onclick="window.location.href='event_details.html?id=upcoming-3'">
+                            <h4 class="widget-item-title">Tech Talk: Future of AI</h4>
+                            <p class="widget-item-date">Sept 20, 2025 (4:00 PM)</p>
+                            <p class="widget-item-metric">Registrations: 8</p>
+                        </div>
+                        <div class="widget-item" onclick="window.location.href='event_details.html?id=upcoming-4'">
+                            <h4 class="widget-item-title">Hackathon Prep Session</h4>
+                            <p class="widget-item-date">Sept 25, 2025 (11:00 AM)</p>
+                            <p class="widget-item-metric">Registrations: 15</p>
+                        </div>
+                        <div class="widget-item" onclick="window.location.href='event_details.html?id=upcoming-5'">
+                            <h4 class="widget-item-title">Web Dev Workshop</h4>
+                            <p class="widget-item-date">Oct 1, 2025 (1:00 PM)</p>
+                            <p class="widget-item-metric">Registrations: 7</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget">
+                    <h3 class="widget-title">Pending Approval</h3>
+                    <div class="widget-list">
+                        <div class="widget-item" onclick="window.location.href='event_details.html?id=pending-1'">
+                            <h4 class="widget-item-title">Annual Hackathon</h4>
+                            <p class="widget-item-date">Submitted: Oct 20, 2025</p>
+                        </div>
+                        <div class="widget-item" onclick="window.location.href='event_details.html?id=pending-2'">
+                            <h4 class="widget-item-title">Guest Lecture: The Future of AI</h4>
+                            <p class="widget-item-date">Submitted: Sept 15, 2025</p>
+                        </div>
+                        <div class="widget-item" onclick="window.location.href='event_details.html?id=pending-3'">
+                            <h4 class="widget-item-title">Blockchain Seminar</h4>
+                            <p class="widget-item-date">Submitted: Sept 10, 2025</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -150,6 +219,161 @@
             </div>
         </section>
 
+        <!-- Manage Members Section -->
+        <!-- <section id="manage-members" class="dashboard-section">
+            <div class="page-header">
+                <h1 class="page-title">Manage Club Members</h1>
+                <p class="page-subtitle">View and manage your club's membership.</p>
+            </div>
+            <div class="search-section">
+                <input type="text" id="member-search" placeholder="Search members by name, email, or role..." class="search-input">
+            </div>
+            <div class="members-grid" id="members-grid">
+                <div class="member-card">
+                    <div class="member-avatar">
+                        <img src="https://via.placeholder.com/60x60/7c3aed/ffffff?text=JD" alt="John Doe">
+                    </div>
+                    <div class="member-info">
+                        <h4 class="member-name">John Doe</h4>
+                        <p class="member-role">President</p>
+                        <p class="member-email">john.doe@university.edu</p>
+                    </div>
+                    <div class="member-actions">
+                        <button class="action-btn edit-btn" onclick="editMember('john-doe')">Edit</button>
+                        <button class="action-btn remove-btn" onclick="removeMember('john-doe')">Remove</button>
+                    </div>
+                </div>
+                <div class="member-card">
+                    <div class="member-avatar">
+                        <img src="https://via.placeholder.com/60x60/06b6d4/ffffff?text=JS" alt="Jane Smith">
+                    </div>
+                    <div class="member-info">
+                        <h4 class="member-name">Jane Smith</h4>
+                        <p class="member-role">Vice President</p>
+                        <p class="member-email">jane.smith@university.edu</p>
+                    </div>
+                    <div class="member-actions">
+                        <button class="action-btn edit-btn" onclick="editMember('jane-smith')">Edit</button>
+                        <button class="action-btn remove-btn" onclick="removeMember('jane-smith')">Remove</button>
+                    </div>
+                </div>
+                <div class="member-card">
+                    <div class="member-avatar">
+                        <img src="https://via.placeholder.com/60x60/10b981/ffffff?text=MJ" alt="Mike Johnson">
+                    </div>
+                    <div class="member-info">
+                        <h4 class="member-name">Mike Johnson</h4>
+                        <p class="member-role">Event Coordinator</p>
+                        <p class="member-email">mike.johnson@university.edu</p>
+                    </div>
+                    <div class="member-actions">
+                        <button class="action-btn edit-btn" onclick="editMember('mike-johnson')">Edit</button>
+                        <button class="action-btn remove-btn" onclick="removeMember('mike-johnson')">Remove</button>
+                    </div>
+                </div>
+                <div class="member-card">
+                    <div class="member-avatar">
+                        <img src="https://via.placeholder.com/60x60/f59e0b/ffffff?text=SB" alt="Sarah Brown">
+                    </div>
+                    <div class="member-info">
+                        <h4 class="member-name">Sarah Brown</h4>
+                        <p class="member-role">Treasurer</p>
+                        <p class="member-email">sarah.brown@university.edu</p>
+                    </div>
+                    <div class="member-actions">
+                        <button class="action-btn edit-btn" onclick="editMember('sarah-brown')">Edit</button>
+                        <button class="action-btn remove-btn" onclick="removeMember('sarah-brown')">Remove</button>
+                    </div>
+                </div>
+                <div class="member-card">
+                    <div class="member-avatar">
+                        <img src="https://via.placeholder.com/60x60/ef4444/ffffff?text=AW" alt="Alex Wilson">
+                    </div>
+                    <div class="member-info">
+                        <h4 class="member-name">Alex Wilson</h4>
+                        <p class="member-role">Marketing Lead</p>
+                        <p class="member-email">alex.wilson@university.edu</p>
+                    </div>
+                    <div class="member-actions">
+                        <button class="action-btn edit-btn" onclick="editMember('alex-wilson')">Edit</button>
+                        <button class="action-btn remove-btn" onclick="removeMember('alex-wilson')">Remove</button>
+                    </div>
+                </div>
+                <div class="member-card">
+                    <div class="member-avatar">
+                        <img src="https://via.placeholder.com/60x60/8b5cf6/ffffff?text=LC" alt="Lisa Chen">
+                    </div>
+                    <div class="member-info">
+                        <h4 class="member-name">Lisa Chen</h4>
+                        <p class="member-role">Technical Lead</p>
+                        <p class="member-email">lisa.chen@university.edu</p>
+                    </div>
+                    <div class="member-actions">
+                        <button class="action-btn edit-btn" onclick="editMember('lisa-chen')">Edit</button>
+                        <button class="action-btn remove-btn" onclick="removeMember('lisa-chen')">Remove</button>
+                    </div>
+                </div>
+            </div>
+            <div class="add-member-section">
+                <button class="add-member-btn" onclick="openMemberForm('create')">Add New Member</button>
+            </div>
+        </section>
+
+        Member Form Modal -->
+        <div id="member-modal" class="modal-overlay hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modal-title">Add New Member</h2>
+                    <button class="modal-close" onclick="closeMemberForm()">&times;</button>
+                </div>
+                <form id="member-form" class="member-form">
+                    <div class="form-group">
+                        <label for="member-name" class="form-label">Full Name</label>
+                        <input type="text" id="member-name" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="member-email" class="form-label">Email</label>
+                        <input type="email" id="member-email" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="member-role" class="form-label">Role</label>
+                        <select id="member-role" class="form-input" required>
+                            <option value="">Select Role</option>
+                            <option value="President">President</option>
+                            <option value="Vice President">Vice President</option>
+                            <option value="Treasurer">Treasurer</option>
+                            <option value="Secretary">Secretary</option>
+                            <option value="Event Coordinator">Event Coordinator</option>
+                            <option value="Marketing Lead">Marketing Lead</option>
+                            <option value="Technical Lead">Technical Lead</option>
+                            <option value="Member">Member</option>
+                        </select>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="cancel-btn" onclick="closeMemberForm()">Cancel</button>
+                        <button type="submit" class="submit-btn" id="submit-btn">Add Member</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Confirmation Modal -->
+        <div id="confirm-modal" class="modal-overlay hidden">
+            <div class="modal-content confirm-modal">
+                <div class="modal-header">
+                    <h2>Confirm Removal</h2>
+                    <button class="modal-close" onclick="closeConfirmModal()">&times;</button>
+                </div>
+                <div class="confirm-content">
+                    <p id="confirm-message">Are you sure you want to remove this member? This action cannot be undone.</p>
+                    <div class="confirm-actions">
+                        <button class="cancel-btn" onclick="closeConfirmModal()">Cancel</button>
+                        <button class="remove-btn" id="confirm-remove-btn" onclick="confirmRemoveMember()">Confirm Remove</button>
+                    </div>
+                </div>
+            </div>
+        </div> 
+
         <!-- Manage Events Section -->
         <section id="manage-events" class="dashboard-section">
             <div class="page-header">
@@ -163,146 +387,374 @@
             </div>
             
             <div id="upcoming-events" class="tab-content active">
-                <div class="grid-layout">
-                    <div class="card event-card" onclick="window.location.href='event_details.html?id=upcoming-1'">
-                        <div class="card-header">
-                            <h3 class="card-title">AI & Machine Learning Workshop</h3>
-                            <div class="card-actions">
-                                <button class="action-menu-btn" onclick="event.stopPropagation(); toggleActionMenu('upcoming-1')">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
-                                    </svg>
-                                </button>
-                                <div class="action-menu" id="action-menu-upcoming-1">
-                                    <button onclick="manageRegistrations('upcoming-1')">Manage Registrations</button>
-                                    <button onclick="editEventDetails('upcoming-1')">Edit Event Details</button>
-                                    <button onclick="cancelEvent('upcoming-1')">Cancel Event</button>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="card-date">Sept 5, 2025 (10:00 AM)</p>
-                        <span class="card-status status-approved">Approved</span>
-                        <p class="card-metric">Registered Students: 3</p>
-                    </div>
+                <div class="grid-layout" id="upcoming-events-grid">
+                    <!-- Events will be populated dynamically -->
                 </div>
             </div>
             <div id="pending-requests" class="tab-content">
-                <div class="grid-layout">
-                    <div class="card event-card" onclick="window.location.href='event_details.html?id=pending-1'">
-                        <div class="card-header">
-                            <h3 class="card-title">Annual Hackathon</h3>
-                            <div class="card-actions">
-                                <button class="action-menu-btn" onclick="event.stopPropagation(); toggleActionMenu('pending-1')">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
-                                    </svg>
-                                </button>
-                                <div class="action-menu" id="action-menu-pending-1">
-                                    <button onclick="editRequest('pending-1')">Edit Request</button>
-                                    <button onclick="withdrawRequest('pending-1')">Withdraw Request</button>
-                                    <button onclick="deleteRequest('pending-1')">Delete Request</button>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="card-date">Oct 15, 2025 (9:00 AM)</p>
-                        <span class="card-status status-pending">Pending Approval</span>
-                        <p class="card-metric">Submitted: Oct 20, 2025</p>
-                    </div>
-                    <div class="card event-card" onclick="window.location.href='event_details.html?id=pending-2'">
-                        <div class="card-header">
-                            <h3 class="card-title">Guest Lecture: The Future of AI</h3>
-                            <div class="card-actions">
-                                <button class="action-menu-btn" onclick="event.stopPropagation(); toggleActionMenu('pending-2')">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
-                                    </svg>
-                                </button>
-                                <div class="action-menu" id="action-menu-pending-2">
-                                    <button onclick="editRequest('pending-2')">Edit Request</button>
-                                    <button onclick="withdrawRequest('pending-2')">Withdraw Request</button>
-                                    <button onclick="deleteRequest('pending-2')">Delete Request</button>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="card-date">Sept 20, 2025 (2:00 PM)</p>
-                        <span class="card-status status-pending">Pending Approval</span>
-                        <p class="card-metric">Submitted: Sept 15, 2025</p>
-                    </div>
+                <div class="grid-layout" id="pending-events-grid">
+                    <!-- Events will be populated dynamically -->
                 </div>
             </div>
             <div id="past-events" class="tab-content">
-                <div class="grid-layout">
-                    <div class="card event-card" onclick="window.location.href='event_details.html?id=past-1'">
-                        <div class="card-header">
-                            <h3 class="card-title">Intro to Web Dev</h3>
-                            <div class="card-actions">
-                                <button class="action-menu-btn" onclick="event.stopPropagation(); toggleActionMenu('past-1')">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
-                                    </svg>
-                                </button>
-                                <div class="action-menu" id="action-menu-past-1">
-                                    <button onclick="viewAttendees('past-1')">View Attendees</button>
-                                    <button onclick="duplicateEvent('past-1')">Duplicate Event</button>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="card-date">Aug 10, 2025 (11:00 AM)</p>
-                        <span class="card-status status-past">Completed</span>
-                        <p class="card-metric">Attended: 45</p>
-                    </div>
-                    <div class="card event-card" onclick="window.location.href='event_details.html?id=past-2'">
-                        <div class="card-header">
-                            <h3 class="card-title">Coding Competition 2025</h3>
-                            <div class="card-actions">
-                                <button class="action-menu-btn" onclick="event.stopPropagation(); toggleActionMenu('past-2')">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
-                                    </svg>
-                                </button>
-                                <div class="action-menu" id="action-menu-past-2">
-                                    <button onclick="viewAttendees('past-2')">View Attendees</button>
-                                    <button onclick="duplicateEvent('past-2')">Duplicate Event</button>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="card-date">July 22, 2025 (10:00 AM)</p>
-                        <span class="card-status status-past">Completed</span>
-                        <p class="card-metric">Attended: 67</p>
-                    </div>
-                    <div class="card event-card" onclick="window.location.href='event_details.html?id=past-3'">
-                        <div class="card-header">
-                            <h3 class="card-title">Tech-Talks: Blockchain</h3>
-                            <div class="card-actions">
-                                <button class="action-menu-btn" onclick="event.stopPropagation(); toggleActionMenu('past-3')">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
-                                    </svg>
-                                </button>
-                                <div class="action-menu" id="action-menu-past-3">
-                                    <button onclick="viewAttendees('past-3')">View Attendees</button>
-                                    <button onclick="duplicateEvent('past-3')">Duplicate Event</button>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="card-date">June 05, 2025 (3:00 PM)</p>
-                        <span class="card-status status-past">Completed</span>
-                        <p class="card-metric">Attended: 32</p>
-                    </div>
+                <div class="grid-layout" id="past-events-grid">
+                    <!-- Events will be populated dynamically -->
                 </div>
             </div>
         </section>
     </main>
 
     <script>
+        // Shared events data
+        const eventsData = {
+            'upcoming-1': {
+                name: 'AI & Machine Learning Workshop',
+                date: '2024-12-01',
+                time: '10:00 AM - 12:00 PM',
+                venue: 'Turing Block',
+                description: 'Learn the basics of AI and machine learning.',
+                status: 'Approved',
+                photo: 'TechClub.png',
+                registrations: 3,
+                department: 'All Departments'
+            },
+            'upcoming-2': {
+                name: 'Coding Bootcamp',
+                date: '2026-09-15',
+                time: '2:00 PM - 4:00 PM',
+                venue: 'Rockfeller Block',
+                description: 'Intensive coding training session.',
+                status: 'Approved',
+                photo: 'tech.jpg',
+                registrations: 12,
+                department: 'Engineering'
+            },
+            'upcoming-3': {
+                name: 'Tech Talk: Future of AI',
+                date: '2026-09-20',
+                time: '4:00 PM - 6:00 PM',
+                venue: 'Fleming Block',
+                description: 'Expert talk on AI advancements.',
+                status: 'Approved',
+                photo: 'Science Fair.jpg',
+                registrations: 8,
+                department: 'Science'
+            },
+            'upcoming-4': {
+                name: 'Hackathon Prep Session',
+                date: '2026-09-25',
+                time: '11:00 AM - 1:00 PM',
+                venue: 'Galileo Block',
+                description: 'Prepare for the upcoming hackathon.',
+                status: 'Approved',
+                photo: 'DanceClub.png',
+                registrations: 15,
+                department: 'Engineering'
+            },
+            'upcoming-5': {
+                name: 'Web Dev Workshop',
+                date: '2026-10-01',
+                time: '1:00 PM - 3:00 PM',
+                venue: 'Le Corbusier Block',
+                description: 'Hands-on web development workshop.',
+                status: 'Approved',
+                photo: 'MusicClub.png',
+                registrations: 7,
+                department: 'Arts'
+            },
+            'pending-1': {
+                name: 'Annual Hackathon',
+                date: '2025-10-15',
+                time: '9:00 AM - 6:00 PM',
+                venue: 'Rockfeller Block',
+                description: 'A 24-hour coding competition.',
+                status: 'Pending Approval',
+                photo: 'tech.jpg',
+                registrations: 0,
+                department: 'All Departments',
+                submitted: '2025-10-20'
+            },
+            'pending-2': {
+                name: 'Guest Lecture: The Future of AI',
+                date: '2025-09-20',
+                time: '2:00 PM - 4:00 PM',
+                venue: 'Fleming Block',
+                description: 'Expert talk on AI advancements.',
+                status: 'Pending Approval',
+                photo: 'Science Fair.jpg',
+                registrations: 0,
+                department: 'Science',
+                submitted: '2025-09-15'
+            },
+            'pending-3': {
+                name: 'Blockchain Seminar',
+                date: '2025-09-10',
+                time: '3:00 PM - 5:00 PM',
+                venue: 'Pythagorous Block',
+                description: 'Discussion on blockchain technology.',
+                status: 'Pending Approval',
+                photo: 'Art Exhibition.jpg',
+                registrations: 0,
+                department: 'Business',
+                submitted: '2025-09-10'
+            },
+            'past-1': {
+                name: 'Intro to Web Dev',
+                date: '2024-08-10',
+                time: '11:00 AM - 1:00 PM',
+                venue: 'Galileo Block',
+                description: 'Basic web development workshop.',
+                status: 'Completed',
+                photo: 'DanceClub.png',
+                registrations: 45,
+                department: 'Engineering'
+            },
+            'past-2': {
+                name: 'Coding Competition 2025',
+                date: '2024-07-22',
+                time: '10:00 AM - 4:00 PM',
+                venue: 'Le Corbusier Block',
+                description: 'Annual coding competition.',
+                status: 'Completed',
+                photo: 'MusicClub.png',
+                registrations: 67,
+                department: 'All Departments'
+            },
+            'past-3': {
+                name: 'Tech-Talks: Blockchain',
+                date: '2024-06-05',
+                time: '3:00 PM - 5:00 PM',
+                venue: 'Pythagorous Block',
+                description: 'Discussion on blockchain technology.',
+                status: 'Completed',
+                photo: 'Art Exhibition.jpg',
+                registrations: 32,
+                department: 'Business'
+            }
+        };
+
+        // Initialize localStorage with events data
+        function initializeEventsData() {
+            if (!localStorage.getItem('eventsData')) {
+                localStorage.setItem('eventsData', JSON.stringify(eventsData));
+            }
+        }
+
+        // Format date for display
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+        }
+
+        // Get events data from localStorage
+        function getEventsData() {
+            return JSON.parse(localStorage.getItem('eventsData')) || eventsData;
+        }
+
+        // Update events data in localStorage
+        function updateEventsData(newData) {
+            localStorage.setItem('eventsData', JSON.stringify(newData));
+        }
+
+        // Calculate stats
+        function calculateStats() {
+            const data = getEventsData();
+            const upcoming = Object.values(data).filter(event => event.status === 'Approved' && new Date(event.date) > new Date());
+            const pending = Object.values(data).filter(event => event.status === 'Pending Approval');
+            const totalRegistrations = Object.values(data).reduce((sum, event) => sum + (event.registrations || 0), 0);
+            return {
+                totalMembers: 78, // Static for now
+                pendingRequests: pending.length,
+                upcomingEvents: upcoming.length,
+                totalRegistrations: totalRegistrations
+            };
+        }
+
+        // Update stat cards
+        function updateStatCards() {
+            const stats = calculateStats();
+            document.querySelector('.stat-card .stat-number').textContent = stats.totalMembers;
+            document.querySelectorAll('.stat-card .stat-number')[1].textContent = stats.pendingRequests;
+            document.querySelectorAll('.stat-card .stat-number')[2].textContent = stats.upcomingEvents;
+            document.querySelectorAll('.stat-card .stat-number')[3].textContent = stats.totalRegistrations;
+        }
+
+        // Update widgets
+        function updateWidgets() {
+            const data = getEventsData();
+            const upcoming = Object.values(data).filter(event => event.status === 'Approved' && new Date(event.date) > new Date()).slice(0, 5);
+            const pending = Object.values(data).filter(event => event.status === 'Pending Approval').slice(0, 3);
+
+            const upcomingList = document.querySelector('.widget-list');
+            upcomingList.innerHTML = '';
+            upcoming.forEach(event => {
+                const item = document.createElement('div');
+                item.className = 'widget-item';
+                item.onclick = () => window.location.href = `event_details.html?id=${Object.keys(data).find(key => data[key] === event)}`;
+                item.innerHTML = `
+                    <h4 class="widget-item-title">${event.name}</h4>
+                    <p class="widget-item-date">${formatDate(event.date)} (${event.time.split(' - ')[0]})</p>
+                    <p class="widget-item-metric">Registrations: ${event.registrations}</p>
+                `;
+                upcomingList.appendChild(item);
+            });
+
+            const pendingList = document.querySelectorAll('.widget-list')[1];
+            pendingList.innerHTML = '';
+            pending.forEach(event => {
+                const item = document.createElement('div');
+                item.className = 'widget-item';
+                item.onclick = () => window.location.href = `event_details.html?id=${Object.keys(data).find(key => data[key] === event)}`;
+                item.innerHTML = `
+                    <h4 class="widget-item-title">${event.name}</h4>
+                    <p class="widget-item-date">Submitted: ${formatDate(event.submitted)}</p>
+                `;
+                pendingList.appendChild(item);
+            });
+        }
+
+        // Populate events in manage events section
+        function populateEvents() {
+            const data = getEventsData();
+
+            // Upcoming events
+            const upcomingGrid = document.getElementById('upcoming-events-grid');
+            const upcoming = Object.entries(data).filter(([key, event]) => event.status === 'Approved' && new Date(event.date) > new Date());
+            upcomingGrid.innerHTML = '';
+            upcoming.forEach(([key, event]) => {
+                const card = document.createElement('div');
+                card.className = 'card event-card';
+                card.onclick = () => window.location.href = `event_details.html?id=${key}`;
+                card.innerHTML = `
+                    <div class="card-header">
+                        <h3 class="card-title">${event.name}</h3>
+                        <div class="card-actions">
+                            <button class="action-menu-btn" onclick="event.stopPropagation(); toggleActionMenu('${key}')">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
+                                </svg>
+                            </button>
+                            <div class="action-menu hidden" id="action-menu-${key}">
+                                <button onclick="manageRegistrations('${key}')">Manage Registrations</button>
+                                <button onclick="editEventDetails('${key}')">Edit Event Details</button>
+                                <button onclick="cancelEvent('${key}')">Cancel Event</button>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="card-date">${formatDate(event.date)} (${event.time.split(' - ')[0]})</p>
+                    <span class="card-status status-approved">Approved</span>
+                    <p class="card-metric">Registered Students: ${event.registrations}</p>
+                `;
+                upcomingGrid.appendChild(card);
+            });
+
+            // Pending events
+            const pendingGrid = document.getElementById('pending-events-grid');
+            const pending = Object.entries(data).filter(([key, event]) => event.status === 'Pending Approval');
+            pendingGrid.innerHTML = '';
+            pending.forEach(([key, event]) => {
+                const card = document.createElement('div');
+                card.className = 'card event-card';
+                card.onclick = () => window.location.href = `event_details.html?id=${key}`;
+                card.innerHTML = `
+                    <div class="card-header">
+                        <h3 class="card-title">${event.name}</h3>
+                        <div class="card-actions">
+                            <button class="action-menu-btn" onclick="event.stopPropagation(); toggleActionMenu('${key}')">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
+                                </svg>
+                            </button>
+                            <div class="action-menu hidden" id="action-menu-${key}">
+                                <button onclick="editRequest('${key}')">Edit Request</button>
+                                <button onclick="withdrawRequest('${key}')">Withdraw Request</button>
+                                <button onclick="deleteRequest('${key}')">Delete Request</button>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="card-date">${formatDate(event.date)} (${event.time.split(' - ')[0]})</p>
+                    <span class="card-status status-pending">Pending Approval</span>
+                    <p class="card-metric">Submitted: ${formatDate(event.submitted)}</p>
+                `;
+                pendingGrid.appendChild(card);
+            });
+
+            // Past events
+            const pastGrid = document.getElementById('past-events-grid');
+            const past = Object.entries(data).filter(([key, event]) => event.status === 'Completed');
+            pastGrid.innerHTML = '';
+            past.forEach(([key, event]) => {
+                const card = document.createElement('div');
+                card.className = 'card event-card';
+                card.onclick = () => window.location.href = `event_details.html?id=${key}`;
+                card.innerHTML = `
+                    <div class="card-header">
+                        <h3 class="card-title">${event.name}</h3>
+                        <div class="card-actions">
+                            <button class="action-menu-btn" onclick="event.stopPropagation(); toggleActionMenu('${key}')">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
+                                </svg>
+                            </button>
+                            <div class="action-menu hidden" id="action-menu-${key}">
+                                <button onclick="viewAttendees('${key}')">View Attendees</button>
+                                <button onclick="duplicateEvent('${key}')">Duplicate Event</button>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="card-date">${formatDate(event.date)} (${event.time.split(' - ')[0]})</p>
+                    <span class="card-status status-past">Completed</span>
+                    <p class="card-metric">Attended: ${event.registrations}</p>
+                `;
+                pastGrid.appendChild(card);
+            });
+
+            // Update tab counts
+            document.querySelector('.tab-button[onclick*="upcoming-events"]').textContent = `Upcoming (${upcoming.length})`;
+            document.querySelector('.tab-button[onclick*="pending-requests"]').textContent = `Pending (${pending.length})`;
+            document.querySelector('.tab-button[onclick*="past-events"]').textContent = `Past (${past.length})`;
+        }
+
+        // Initialize data on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeEventsData();
+            updateStatCards();
+            updateWidgets();
+            populateEvents();
+        });
+
         // --- Navigation for main page sections ---
         function showSection(sectionId, clickedLink) {
             document.querySelectorAll('.dashboard-section').forEach(section => section.classList.remove('active'));
             document.getElementById(sectionId).classList.add('active');
 
             document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active'));
-            clickedLink.classList.add('active');
+            if (clickedLink) {
+                clickedLink.classList.add('active');
+            } else {
+                // Find the link that matches the sectionId
+                const matchingLink = document.querySelector(`.nav-links a[href="#${sectionId}"]`);
+                if (matchingLink) {
+                    matchingLink.classList.add('active');
+                }
+            }
         }
+
+        // Handle hash change for navigation
+        window.addEventListener('hashchange', function() {
+            const hash = window.location.hash.substring(1); // Remove the '#'
+            if (hash) {
+                showSection(hash);
+            }
+        });
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const hash = window.location.hash.substring(1);
+            if (hash) {
+                showSection(hash);
+            }
+        });
         
         // --- Navigation for tabbed content within a section ---
         function showTab(sectionId, tabId, clickedButton) {
@@ -388,8 +840,25 @@
         }
 
         function editEventDetails(eventId) {
-            // In a real app, this would navigate to an edit form pre-filled with event data
-            alert('Edit Event Details functionality would be implemented here.');
+            const data = getEventsData();
+            const event = data[eventId];
+            if (event) {
+                // Populate form with event data
+                document.getElementById('event-name').value = event.name;
+                document.getElementById('event-venue').value = event.venue;
+                document.getElementById('event-date').value = event.date;
+                document.getElementById('event-start-time').value = event.time.split(' - ')[0];
+                document.getElementById('event-end-time').value = event.time.split(' - ')[1];
+                document.getElementById('event-description').value = event.description;
+                // Set department
+                selectedValues = [event.department.toLowerCase().replace(' ', '')];
+                updateSelectedDisplay();
+                document.getElementById('event-department').value = selectedValues.join(',');
+                // Switch to request event section
+                showSection('request-event', document.querySelector('a[href="#request-event"]'));
+                // Change button text to indicate edit mode
+                document.querySelector('.form-button').textContent = 'Update Event Request';
+            }
         }
 
         function cancelEvent(eventId) {
@@ -427,11 +896,211 @@
             alert('Duplicate Event functionality would be implemented here.');
         }
 
+        // Member management variables
+        let membersData = [
+            { id: 'john-doe', name: 'John Doe', email: 'john.doe@university.edu', role: 'President' },
+            { id: 'jane-smith', name: 'Jane Smith', email: 'jane.smith@university.edu', role: 'Vice President' },
+            { id: 'mike-johnson', name: 'Mike Johnson', email: 'mike.johnson@university.edu', role: 'Event Coordinator' },
+            { id: 'sarah-brown', name: 'Sarah Brown', email: 'sarah.brown@university.edu', role: 'Treasurer' },
+            { id: 'alex-wilson', name: 'Alex Wilson', email: 'alex.wilson@university.edu', role: 'Marketing Lead' },
+            { id: 'lisa-chen', name: 'Lisa Chen', email: 'lisa.chen@university.edu', role: 'Technical Lead' }
+        ];
+        let memberToRemove = null;
+
+        // Initialize members data
+        function initializeMembersData() {
+            if (!localStorage.getItem('membersData')) {
+                localStorage.setItem('membersData', JSON.stringify(membersData));
+            } else {
+                membersData = JSON.parse(localStorage.getItem('membersData'));
+            }
+        }
+
+        // Save members data
+        function saveMembersData() {
+            localStorage.setItem('membersData', JSON.stringify(membersData));
+        }
+
+        // Render members
+        function renderMembers(filteredMembers = null) {
+            const members = filteredMembers || membersData;
+            const grid = document.getElementById('members-grid');
+            grid.innerHTML = '';
+
+            members.forEach(member => {
+                const card = document.createElement('div');
+                card.className = 'member-card';
+                card.innerHTML = `
+                    <div class="member-avatar">
+                        <img src="https://via.placeholder.com/60x60/${getColorForRole(member.role)}/ffffff?text=${getInitials(member.name)}" alt="${member.name}">
+                    </div>
+                    <div class="member-content">
+                        <div class="member-info">
+                            <h4 class="member-name">${member.name}</h4>
+                            <span class="role-badge">${member.role}</span>
+                            <p class="member-email">${member.email}</p>
+                        </div>
+                        <div class="member-actions">
+                            <button class="action-btn edit-btn" onclick="editMember('${member.id}')">Edit</button>
+                            <button class="action-btn remove-btn" onclick="removeMember('${member.id}')">Remove</button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Get color for role
+        function getColorForRole(role) {
+            const colors = {
+                'President': '7c3aed',
+                'Vice President': '06b6d4',
+                'Treasurer': 'f59e0b',
+                'Secretary': '10b981',
+                'Event Coordinator': '3b82f6',
+                'Marketing Lead': 'ef4444',
+                'Technical Lead': '8b5cf6',
+                'Member': '6b7280'
+            };
+            return colors[role] || '6b7280';
+        }
+
+        // Get initials
+        function getInitials(name) {
+            return name.split(' ').map(n => n[0]).join('').toUpperCase();
+        }
+
+        // Search members
+        function searchMembers() {
+            const searchTerm = document.getElementById('member-search').value.toLowerCase();
+            if (!searchTerm) {
+                renderMembers();
+                return;
+            }
+
+            const filtered = membersData.filter(member =>
+                member.name.toLowerCase().includes(searchTerm) ||
+                member.email.toLowerCase().includes(searchTerm) ||
+                member.role.toLowerCase().includes(searchTerm)
+            );
+            renderMembers(filtered);
+        }
+
+        // Member form functions
+        function openMemberForm(mode, memberId = null) {
+            const modal = document.getElementById('member-modal');
+            const form = document.getElementById('member-form');
+            const title = document.getElementById('modal-title');
+            const submitBtn = document.getElementById('submit-btn');
+
+            form.reset();
+
+            if (mode === 'create') {
+                title.textContent = 'Add New Member';
+                submitBtn.textContent = 'Add Member';
+                form.dataset.mode = 'create';
+            } else if (mode === 'edit' && memberId) {
+                const member = membersData.find(m => m.id === memberId);
+                if (member) {
+                    title.textContent = 'Edit Member';
+                    submitBtn.textContent = 'Save Changes';
+                    form.dataset.mode = 'edit';
+                    form.dataset.memberId = memberId;
+
+                    document.getElementById('member-name').value = member.name;
+                    document.getElementById('member-email').value = member.email;
+                    document.getElementById('member-role').value = member.role;
+                }
+            }
+
+            modal.classList.remove('hidden');
+        }
+
+        function closeMemberForm() {
+            document.getElementById('member-modal').classList.add('hidden');
+        }
+
+        // Confirmation modal functions
+        function removeMember(memberId) {
+            const member = membersData.find(m => m.id === memberId);
+            if (member) {
+                memberToRemove = memberId;
+                document.getElementById('confirm-message').textContent = `Are you sure you want to remove ${member.name}? This action cannot be undone.`;
+                document.getElementById('confirm-modal').classList.remove('hidden');
+            }
+        }
+
+        function closeConfirmModal() {
+            document.getElementById('confirm-modal').classList.add('hidden');
+            memberToRemove = null;
+        }
+
+        function confirmRemoveMember() {
+            if (memberToRemove) {
+                membersData = membersData.filter(m => m.id !== memberToRemove);
+                saveMembersData();
+                renderMembers();
+                closeConfirmModal();
+            }
+        }
+
+        // Edit member
+        function editMember(memberId) {
+            openMemberForm('edit', memberId);
+        }
+
         // Close action menus when clicking outside
         document.addEventListener('click', function(e) {
             if (!e.target.closest('.card-actions')) {
                 document.querySelectorAll('.action-menu').forEach(menu => menu.classList.add('hidden'));
             }
+        });
+
+        // Initialize members when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeMembersData();
+            renderMembers();
+
+            // Add search functionality
+            document.getElementById('member-search').addEventListener('input', searchMembers);
+
+            // Member form submission
+            document.getElementById('member-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const name = document.getElementById('member-name').value.trim();
+                const email = document.getElementById('member-email').value.trim();
+                const role = document.getElementById('member-role').value;
+
+                if (!name || !email || !role) {
+                    alert('Please fill in all fields.');
+                    return;
+                }
+
+                const mode = this.dataset.mode;
+                const memberId = this.dataset.memberId;
+
+                if (mode === 'create') {
+                    // Add new member
+                    const newId = name.toLowerCase().replace(/\s+/g, '-');
+                    const newMember = { id: newId, name, email, role };
+                    membersData.push(newMember);
+                    saveMembersData();
+                    renderMembers();
+                    closeMemberForm();
+                    alert('Member added successfully!');
+                } else if (mode === 'edit' && memberId) {
+                    // Update existing member
+                    const memberIndex = membersData.findIndex(m => m.id === memberId);
+                    if (memberIndex !== -1) {
+                        membersData[memberIndex] = { ...membersData[memberIndex], name, email, role };
+                        saveMembersData();
+                        renderMembers();
+                        closeMemberForm();
+                        alert('Member updated successfully!');
+                    }
+                }
+            });
         });
 
         // Form validation
