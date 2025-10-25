@@ -7,14 +7,26 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"  />
+    <link rel="stylesheet" href="index2.css" />
     <link rel="stylesheet" href="event.css" />
 </head>
     <body>
-        <div class="header">
-            <button class="back-btn" onclick="window.location.href='index.html'" aria-label="Go back">&#8592;</button>
-            <h1>Upcoming Events</h1>
-            <div style="width: 50px;"></div> <!-- spacer to balance flex -->
-        </div>
+        <header class="site-header sticky-header">
+            <div class="container">
+                <nav class="header-nav">
+                    <a href="index.html" class="logo-link">EventEase</a>
+                    <div class="nav-links">
+                        <a href="index.html" >Home</a>
+                        <a href="event.html">Events</a>
+                        <a href="clubs.html">Clubs</a>
+                        <a href="about.html">About us</a>
+                    </div>
+                    <div class="header-actions">
+                        <a href="login.html" class="login-button">Login/Signup</a>
+                    </div>
+                </nav>
+            </div>
+        </header>
         <div class="search-container">
             <div class="search-wrapper">
                 <!-- <span class="search-icon">https://icons8.com/icon/112468/search</span> -->
@@ -26,12 +38,12 @@
         <!-- Event Card 1 -->
         <div class="event-card-container">
             <input type="checkbox" id="modal-1" class="modal-toggle">
-            <label for="modal-1" class="event-card" style="background-image: url('tech.jpg');">
+            <a href="event_details.html?id=1" class="event-card" style="background-image: url('tech.jpg');">
                 <h2 class="event-title">Tech Talk: The Future of AI</h2>
                 <p class="event-details">Venue: Auditorium A</p>
                 <p class="event-details">Date: 2025-05-15</p>
                 <p class="event-details">Time: 3:00 PM - 5:00 PM</p>
-            </label>
+            </a>
             <div class="modal-overlay">
                 <div class="modal-content">
                     <label for="modal-1" class="modal-close-btn">&times;</label>
@@ -46,12 +58,12 @@
         <!-- Event Card 2 -->
         <div class="event-card-container">
             <input type="checkbox" id="modal-2" class="modal-toggle">
-            <label for="modal-2" class="event-card" style="background-image: url('image\ copy\ 2.png');">
+            <a href="event_details.html?id=2" class="event-card" style="background-image: url('Spring Dance Festival.jpg');">
                 <h2 class="event-title">Spring Dance Festival</h2>
                 <p class="event-details">Venue: Main Hall</p>
                 <p class="event-details">Date: 2025-05-20</p>
                 <p class="event-details">Time: 6:00 PM - 10:00 PM</p>
-            </label>
+            </a>
             <div class="modal-overlay">
                 <div class="modal-content">
                     <label for="modal-2" class="modal-close-btn">&times;</label>
@@ -66,12 +78,12 @@
         <!-- Event Card 3 -->
         <div class="event-card-container">
             <input type="checkbox" id="modal-3" class="modal-toggle">
-            <label for="modal-3" class="event-card" style="background-image: url('image\ copy.png')">
+            <a href="event_details.html?id=3" class="event-card" style="background-image: url('Music Jam Session.jpg')">
                 <h2 class="event-title">Music Jam Session</h2>
                 <p class="event-details">Venue: Music Room 101</p>
                 <p class="event-details">Date: 2025-05-25</p>
                 <p class="event-details">Time: 4:00 PM - 7:00 PM</p>
-            </label>
+            </a>
             <div class="modal-overlay">
                 <div class="modal-content">
                     <label for="modal-3" class="modal-close-btn">&times;</label>
@@ -86,12 +98,12 @@
         <!-- Event Card 4 -->
         <div class="event-card-container">
             <input type="checkbox" id="modal-4" class="modal-toggle">
-            <label for="modal-4" class="event-card" style="background-image: url('image.png');">
+            <a href="event_details.html?id=4" class="event-card" style="background-image: url('Art Exhibition.jpg');">
                 <h2 class="event-title">Art Exhibition</h2>
                 <p class="event-details">Venue: Gallery 3</p>
                 <p class="event-details">Date: 2025-06-01</p>
                 <p class="event-details">Time: 10:00 AM - 4:00 PM</p>
-            </label>
+            </a>
             <div class="modal-overlay">
                 <div class="modal-content">
                     <label for="modal-4" class="modal-close-btn">&times;</label>
@@ -106,12 +118,12 @@
         <!-- Event Card 5 -->
         <div class="event-card-container">
             <input type="checkbox" id="modal-5" class="modal-toggle">
-            <label for="modal-5" class="event-card" style="background-image: url('image\ copy\ 3.png');">
+            <a href="event_details.html?id=5" class="event-card" style="background-image: url('Science Fair.jpg');">
                 <h2 class="event-title">Science Fair</h2>
                 <p class="event-details">Venue: Science Hall</p>
                 <p class="event-details">Date: 2025-06-10</p>
                 <p class="event-details">Time: 9:00 AM - 3:00 PM</p>
-            </label>
+            </a>
             <div class="modal-overlay">
                 <div class="modal-content">
                     <label for="modal-5" class="modal-close-btn">&times;</label>
@@ -126,12 +138,12 @@
         <!-- Event Card 6 -->
         <div class="event-card-container">
             <input type="checkbox" id="modal-6" class="modal-toggle">
-            <label for="modal-6" class="event-card" style="background-image: url('image\ copy\ 4.png');">
+            <a href="event_details.html?id=6" class="event-card" style="background-image: url('Charity Run.jpg');">
                 <h2 class="event-title">Charity Run</h2>
                 <p class="event-details">Venue: Campus Grounds</p>
                 <p class="event-details">Date: 2025-06-15</p>
                 <p class="event-details">Time: 7:00 AM - 12:00 PM</p>
-            </label>
+            </a>
             <div class="modal-overlay">
                 <div class="modal-content">
                     <label for="modal-6" class="modal-close-btn">&times;</label>

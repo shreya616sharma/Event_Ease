@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Details - EventEase</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Head_of_club_dashboard.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <nav class="header-nav">
+                <a href="index.html" class="logo-link">EventEase</a>
+                <div class="nav-links">
+                    <a href="Head_of_club_dashboard.html">Back to Dashboard</a>
+                </div>
+                <a href="index.html" class="logout-button">Logout</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="event-details" class="dashboard-section active">
+            <div class="page-header">
+                <h1 class="page-title" id="event-name">Event Name</h1>
+                <p class="page-subtitle" id="event-status">Status</p>
+            </div>
+            <div class="grid-layout" style="grid-template-columns: 1fr;">
+                <div class="card">
+                    <div class="event-detail-layout">
+                        <div class="event-details-left">
+                            <div class="event-detail-grid">
+                                <div class="detail-item">
+                                    <strong>Date:</strong> <span id="event-date">Date</span>
+                                </div>
+                                <div class="detail-item">
+                                    <strong>Time:</strong> <span id="event-time">Time</span>
+                                </div>
+                                <div class="detail-item">
+                                    <strong>Venue:</strong> <span id="event-venue">Venue</span>
+                                </div>
+                                <div class="detail-item">
+                                    <strong>Description:</strong> <span id="event-description">Description</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="event-photo-right" id="event-photo-container">
+                            <!-- Photo will be inserted here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="registrations-section" class="card">
+                <h3 class="card-title">Registered Students</h3>
+                <div class="registration-actions">
+                    <button class="form-button" onclick="exportRegistrations()">Export List</button>
+                    <button class="form-button secondary" onclick="sendNotification()">Send Notification</button>
+                </div>
+                <div id="registered-students-list">
+                    <!-- Student list will be inserted here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Get event ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const eventId = urlParams.get('id');
+
+        // Get events data from localStorage (shared with dashboard)
+        function getEventsData() {
+            return JSON.parse(localStorage.getItem('eventsData')) || {};
+        }
+
+        const events = getEventsData();
+
+        if (eventId && events[eventId]) {
+            const event = events[eventId];
+            document.getElementById('event-name').textContent = event.name;
+            document.getElementById('event-status').textContent = event.status;
+            document.getElementById('event-date').textContent = event.date;
+            document.getElementById('event-time').textContent = event.time;
+            document.getElementById('event-venue').textContent = event.venue;
+            document.getElementById('event-description').textContent = event.description;
+
+            if (event.photo) {
+                document.getElementById('event-photo-container').innerHTML = `<img src="${event.photo}" alt="${event.name}" style="max-width: 100%; height: auto; border-radius: 0.5rem;">`;
+            }
+
+            const studentList = document.getElementById('registered-students-list');
+            if (event.registrations.length > 0) {
+                event.registrations.forEach(student => {
+                    const studentCard = document.createElement('div');
+                    studentCard.className = 'student-card';
+                    studentCard.innerHTML = `
+                        <svg class="student-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                        </svg>
+                        <div class="student-info">
+                            <p class="student-name">${student.name}</p>
+                            <p class="student-department">${student.department}</p>
+                        </div>
+                    `;
+                    studentList.appendChild(studentCard);
+                });
+            } else {
+                studentList.innerHTML = '<p>No registrations yet.</p>';
+            }
+        } else {
+            document.getElementById('event-details').innerHTML = '<p>Event not found.</p>';
+        }
+
+        // Scroll to registrations if hash is present
+        if (window.location.hash === '#registrations') {
+            document.getElementById('registrations-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function exportRegistrations() {
+            alert('Export functionality would be implemented here.');
+        }
+
+        function sendNotification() {
+            alert('Send notification functionality would be implemented here.');
+        }
+    </script>
+</body>
+</html>
