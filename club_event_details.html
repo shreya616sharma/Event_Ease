@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club Event Details - EventEase</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Head_of_club_dashboard.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <nav class="header-nav">
+                <a href="Head_of_club_dashboard.html" class="logo-link">EventEase</a>
+                <div class="nav-links">
+                    <a href="Head_of_club_dashboard.html#dashboard">Dashboard</a>
+                    <a href="Head_of_club_dashboard.html#request-event">Request Event</a>
+                    <a href="Head_of_club_dashboard.html#manage-events">Manage Events</a>
+                </div>
+                <a href="index.html" class="logout-button">Logout</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="dashboard-section active">
+            <div class="page-header">
+                <h1 class="page-title" id="event-name">Event Name</h1>
+                <p class="page-subtitle" id="event-status">Status: Loading...</p>
+            </div>
+
+            <!-- Two-Column Layout -->
+            <div class="event-detail-layout">
+                <!-- Left Column: Event Information & Description -->
+                <div class="event-details-left">
+                    <div class="event-description-section" id="event-description">Loading...</div>
+                    <div class="event-core-details-card">
+                        <h3>Event Details</h3>
+                        <div class="event-detail-grid">
+                            <div class="detail-item">
+                                <strong>Date:</strong>
+                                <span id="event-date">Loading...</span>
+                            </div>
+                            <div class="detail-item">
+                                <strong>Time:</strong>
+                                <span id="event-time">Loading...</span>
+                            </div>
+                            <div class="detail-item">
+                                <strong>Venue:</strong>
+                                <span id="event-venue">Loading...</span>
+                            </div>
+                            <div class="detail-item">
+                                <strong>Department:</strong>
+                                <span id="event-department">Loading...</span>
+                            </div>
+                            <div class="detail-item">
+                                <strong>Registrations:</strong>
+                                <span id="event-registrations">Loading...</span>
+                            </div>
+                        </div>
+                        <div id="event-actions-section" class="event-actions-section">
+                            <button class="action-button primary" onclick="editEvent()">Edit Event</button>
+                            <button class="action-button secondary" onclick="duplicateEvent()">Duplicate Event</button>
+                            <button class="action-button secondary" onclick="cancelEvent()">Cancel Event</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Event Photo & Registration Actions -->
+                <div class="event-photo-right">
+                    <img id="event-photo" src="" alt="Event Photo">
+                    <div id="registration-actions-card" class="registration-actions-card">
+                        <h3 id="right-card-title">Registration Management</h3>
+                        <div class="registration-actions-section">
+                            <button class="action-button primary" onclick="viewRegistrations()">View Registrations</button>
+                            <button class="action-button secondary" onclick="exportStudentList()">Export Student List</button>
+                            <button class="action-button secondary" onclick="sendNotification()">Send Notification</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Registrations Section (Full Width Below Columns) -->
+            <div id="registrations-section" class="hidden">
+                <h3 id="registrations-heading">Registered Students (0)</h3>
+                <div class="card">
+                    <div id="registrations-list">
+                        <!-- Registrations will be populated here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Function to get query parameter (compatible with file:// protocol)
+        function getQueryParam(name) {
+            const url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+        // Event data (same as in dashboard)
+        const eventsData = {
+            'upcoming-1': {
+                name: 'AI & Machine Learning Workshop',
+                description: 'Learn the basics of AI and machine learning.',
+                date: '2024-12-01',
+                time: '10:00 AM - 12:00 PM',
+                venue: 'Turing Block',
+                photo: 'TechClub.png',
+                status: 'Approved',
+                registrations: 3,
+                department: 'All Departments',
+                students: [
+                    { name: 'Alice Johnson', email: 'alice.johnson@university.edu', department: 'Computer Science' },
+                    { name: 'Bob Smith', email: 'bob.smith@university.edu', department: 'Engineering' },
+                    { name: 'Charlie Brown', email: 'charlie.brown@university.edu', department: 'Mathematics' }
+                ]
+            },
+            'upcoming-2': {
+                name: 'Coding Bootcamp',
+                description: 'Intensive coding training session.',
+                date: '2026-09-15',
+                time: '2:00 PM - 4:00 PM',
+                venue: 'Rockfeller Block',
+                photo: 'tech.jpg',
+                status: 'Approved',
+                registrations: 12,
+                department: 'Engineering',
+                students: [
+                    { name: 'David Wilson', email: 'david.wilson@university.edu', department: 'Engineering' },
+                    { name: 'Eva Garcia', email: 'eva.garcia@university.edu', department: 'Computer Science' },
+                    { name: 'Frank Miller', email: 'frank.miller@university.edu', department: 'Engineering' },
+                    { name: 'Grace Lee', email: 'grace.lee@university.edu', department: 'Engineering' },
+                    { name: 'Henry Davis', email: 'henry.davis@university.edu', department: 'Engineering' },
+                    { name: 'Ivy Chen', email: 'ivy.chen@university.edu', department: 'Computer Science' },
+                    { name: 'Jack Taylor', email: 'jack.taylor@university.edu', department: 'Engineering' },
+                    { name: 'Kate Anderson', email: 'kate.anderson@university.edu', department: 'Engineering' },
+                    { name: 'Liam Martinez', email: 'liam.martinez@university.edu', department: 'Engineering' },
+                    { name: 'Mia Rodriguez', email: 'mia.rodriguez@university.edu', department: 'Engineering' },
+                    { name: 'Noah Thompson', email: 'noah.thompson@university.edu', department: 'Computer Science' },
+                    { name: 'Olivia White', email: 'olivia.white@university.edu', department: 'Engineering' }
+                ]
+            },
+            'upcoming-3': {
+                name: 'Tech Talk: Future of AI',
+                description: 'Expert talk on AI advancements.',
+                date: '2026-09-20',
+                time: '4:00 PM - 6:00 PM',
+                venue: 'Fleming Block',
+                photo: 'Science Fair.jpg',
+                status: 'Approved',
+                registrations: 8,
+                department: 'Science',
+                students: [
+                    { name: 'Paul Harris', email: 'paul.harris@university.edu', department: 'Physics' },
+                    { name: 'Quinn Young', email: 'quinn.young@university.edu', department: 'Chemistry' },
+                    { name: 'Rachel King', email: 'rachel.king@university.edu', department: 'Biology' },
+                    { name: 'Sam Wright', email: 'sam.wright@university.edu', department: 'Physics' },
+                    { name: 'Tina Lopez', email: 'tina.lopez@university.edu', department: 'Chemistry' },
+                    { name: 'Uma Patel', email: 'uma.patel@university.edu', department: 'Biology' },
+                    { name: 'Victor Nguyen', email: 'victor.nguyen@university.edu', department: 'Physics' },
+                    { name: 'Wendy Scott', email: 'wendy.scott@university.edu', department: 'Chemistry' }
+                ]
+            },
+            'upcoming-4': {
+                name: 'Hackathon Prep Session',
+                description: 'Prepare for the upcoming hackathon.',
+                date: '2026-09-25',
+                time: '11:00 AM - 1:00 PM',
+                venue: 'Galileo Block',
+                photo: 'DanceClub.png',
+                status: 'Approved',
+                registrations: 15,
+                department: 'Engineering',
+                students: [
+                    { name: 'Xander Hall', email: 'xander.hall@university.edu', department: 'Engineering' },
+                    { name: 'Yara Ahmed', email: 'yara.ahmed@university.edu', department: 'Computer Science' },
+                    { name: 'Zoe Bennett', email: 'zoe.bennett@university.edu', department: 'Engineering' },
+                    { name: 'Aaron Carter', email: 'aaron.carter@university.edu', department: 'Engineering' },
+                    { name: 'Bella Evans', email: 'bella.evans@university.edu', department: 'Computer Science' },
+                    { name: 'Caleb Foster', email: 'caleb.foster@university.edu', department: 'Engineering' },
+                    { name: 'Diana Green', email: 'diana.green@university.edu', department: 'Engineering' },
+                    { name: 'Ethan Hill', email: 'ethan.hill@university.edu', department: 'Engineering' },
+                    { name: 'Fiona Jenkins', email: 'fiona.jenkins@university.edu', department: 'Computer Science' },
+                    { name: 'George Kelly', email: 'george.kelly@university.edu', department: 'Engineering' },
+                    { name: 'Hannah Lewis', email: 'hannah.lewis@university.edu', department: 'Engineering' },
+                    { name: 'Isaac Moore', email: 'isaac.moore@university.edu', department: 'Engineering' },
+                    { name: 'Julia Nelson', email: 'julia.nelson@university.edu', department: 'Computer Science' },
+                    { name: 'Kevin Parker', email: 'kevin.parker@university.edu', department: 'Engineering' },
+                    { name: 'Luna Quinn', email: 'luna.quinn@university.edu', department: 'Engineering' }
+                ]
+            },
+            'upcoming-5': {
+                name: 'Web Dev Workshop',
+                description: 'Hands-on web development workshop.',
+                date: '2026-10-01',
+                time: '1:00 PM - 3:00 PM',
+                venue: 'Le Corbusier Block',
+                photo: 'MusicClub.png',
+                status: 'Approved',
+                registrations: 7,
+                department: 'Arts',
+                students: [
+                    { name: 'Maya Rivera', email: 'maya.rivera@university.edu', department: 'Fine Arts' },
+                    { name: 'Nolan Sanders', email: 'nolan.sanders@university.edu', department: 'Graphic Design' },
+                    { name: 'Ophelia Torres', email: 'ophelia.torres@university.edu', department: 'Fine Arts' },
+                    { name: 'Parker Underwood', email: 'parker.underwood@university.edu', department: 'Graphic Design' },
+                    { name: 'Quinn Vargas', email: 'quinn.vargas@university.edu', department: 'Fine Arts' },
+                    { name: 'Riley Walsh', email: 'riley.walsh@university.edu', department: 'Graphic Design' },
+                    { name: 'Sofia Xu', email: 'sofia.xu@university.edu', department: 'Fine Arts' }
+                ]
+            },
+            'pending-1': {
+                name: 'Annual Hackathon',
+                description: 'A 24-hour coding competition.',
+                date: '2025-10-15',
+                time: '9:00 AM - 6:00 PM',
+                venue: 'Rockfeller Block',
+                photo: 'tech.jpg',
+                status: 'Pending Approval',
+                registrations: 0,
+                department: 'All Departments',
+                submitted: '2025-10-20',
+                students: []
+            },
+            'pending-2': {
+                name: 'Guest Lecture: The Future of AI',
+                description: 'Expert talk on AI advancements.',
+                date: '2025-09-20',
+                time: '2:00 PM - 4:00 PM',
+                venue: 'Fleming Block',
+                photo: 'Science Fair.jpg',
+                status: 'Pending Approval',
+                registrations: 0,
+                department: 'Science',
+                submitted: '2025-09-15',
+                students: []
+            },
+            'pending-3': {
+                name: 'Blockchain Seminar',
+                description: 'Discussion on blockchain technology.',
+                date: '2025-09-10',
+                time: '3:00 PM - 5:00 PM',
+                venue: 'Pythagorous Block',
+                photo: 'Art Exhibition.jpg',
+                status: 'Pending Approval',
+                registrations: 0,
+                department: 'Business',
+                submitted: '2025-09-10',
+                students: []
+            },
+            'past-1': {
+                name: 'Intro to Web Dev',
+                description: 'Basic web development workshop.',
+                date: '2024-08-10',
+                time: '11:00 AM - 1:00 PM',
+                venue: 'Galileo Block',
+                photo: 'DanceClub.png',
+                status: 'Completed',
+                registrations: 45,
+                department: 'Engineering',
+                students: [
+                    // Mock data for past event - would be populated from database
+                    { name: 'Student 1', email: 'student1@university.edu', department: 'Engineering' },
+                    { name: 'Student 2', email: 'student2@university.edu', department: 'Engineering' },
+                    // ... more students
+                ]
+            },
+            'past-2': {
+                name: 'Coding Competition 2025',
+                description: 'Annual coding competition.',
+                date: '2024-07-22',
+                time: '10:00 AM - 4:00 PM',
+                venue: 'Le Corbusier Block',
+                photo: 'MusicClub.png',
+                status: 'Completed',
+                registrations: 67,
+                department: 'All Departments',
+                students: [
+                    // Mock data for past event
+                    { name: 'Student A', email: 'studenta@university.edu', department: 'Computer Science' },
+                    { name: 'Student B', email: 'studentb@university.edu', department: 'Engineering' },
+                    // ... more students
+                ]
+            },
+            'past-3': {
+                name: 'Tech-Talks: Blockchain',
+                description: 'Discussion on blockchain technology.',
+                date: '2024-06-05',
+                time: '3:00 PM - 5:00 PM',
+                venue: 'Pythagorous Block',
+                photo: 'Art Exhibition.jpg',
+                status: 'Completed',
+                registrations: 32,
+                department: 'Business',
+                students: [
+                    // Mock data for past event
+                    { name: 'Student X', email: 'studentx@university.edu', department: 'Business' },
+                    { name: 'Student Y', email: 'studenty@university.edu', department: 'Business' },
+                    // ... more students
+                ]
+            }
+        };
+
+        // Get event ID from URL
+        const eventId = getQueryParam('id');
+
+        if (eventId && eventsData[eventId]) {
+            const event = eventsData[eventId];
+            document.getElementById('event-name').textContent = event.name;
+            document.getElementById('event-description').textContent = event.description;
+            document.getElementById('event-date').textContent = event.date;
+            document.getElementById('event-time').textContent = event.time;
+            document.getElementById('event-venue').textContent = event.venue;
+            document.getElementById('event-department').textContent = event.department || 'N/A';
+            document.getElementById('event-registrations').textContent = event.registrations || 0;
+            document.getElementById('event-status').textContent = `Status: ${event.status}`;
+            document.getElementById('event-photo').src = event.photo;
+            document.getElementById('event-photo').alt = event.name;
+
+            // Conditional rendering based on status
+            renderConditionalLayout(event);
+        } else {
+            document.getElementById('event-name').textContent = 'Event Not Found';
+            document.getElementById('event-description').textContent = 'The requested event could not be found.';
+        }
+
+        function renderConditionalLayout(event) {
+            const status = event.status;
+            const registrationCard = document.getElementById('registration-actions-card');
+            const registrationsSection = document.getElementById('registrations-section');
+            const rightCardTitle = document.getElementById('right-card-title');
+            const eventActionsSection = document.getElementById('event-actions-section');
+            const registrationsHeading = document.getElementById('registrations-heading');
+
+            if (status === 'Pending Approval') {
+                // Hide registration management card
+                registrationCard.style.display = 'none';
+                // Hide registrations section
+                registrationsSection.style.display = 'none';
+                // Update left card actions for pending request
+                eventActionsSection.innerHTML = `
+                    <button class="action-button primary" onclick="editRequest()">Edit Request</button>
+                    <button class="action-button secondary" onclick="duplicateEvent()">Duplicate Event</button>
+                    <button class="action-button danger" onclick="withdrawRequest()">Withdraw Request</button>
+                `;
+            } else if (status === 'Approved') {
+                // Show everything for approved events
+                registrationCard.style.display = 'block';
+                registrationsSection.style.display = 'block';
+                rightCardTitle.textContent = 'Registration Management';
+                registrationsHeading.textContent = `Registered Students (${event.registrations})`;
+                eventActionsSection.innerHTML = `
+                    <button class="action-button primary" onclick="editEvent()">Edit Event</button>
+                    <button class="action-button secondary" onclick="duplicateEvent()">Duplicate Event</button>
+                    <button class="action-button secondary" onclick="cancelEvent()">Cancel Event</button>
+                `;
+            } else if (status === 'Completed') {
+                // Show attendee list for past events
+                registrationCard.style.display = 'block';
+                registrationsSection.style.display = 'block';
+                rightCardTitle.textContent = 'Event Report';
+                registrationsHeading.textContent = `Attendee List (${event.registrations})`;
+                // Update right card actions
+                const actionsSection = registrationCard.querySelector('.registration-actions-section');
+                actionsSection.innerHTML = `
+                    <button class="action-button primary" onclick="viewRegistrations()">View Attendee List</button>
+                    <button class="action-button secondary" onclick="exportStudentList()">Export Attendee List</button>
+                `;
+                // Update left card actions for past events
+                eventActionsSection.innerHTML = `
+                    <button class="action-button primary" onclick="duplicateEvent()">Duplicate Event</button>
+                    <button class="action-button secondary" onclick="viewEventSummary()">View Event Summary</button>
+                `;
+            }
+        }
+
+        // Action functions
+        function editEvent() {
+            alert('Edit Event functionality would redirect to the request form pre-filled with event data.');
+            // In a real app, this would navigate to the request form
+        }
+
+        function viewRegistrations() {
+            const section = document.getElementById('registrations-section');
+            const event = eventsData[eventId];
+            const heading = document.getElementById('registrations-heading');
+            heading.textContent = `Registered Students (${event.registrations})`;
+
+            section.classList.toggle('hidden');
+            if (!section.classList.contains('hidden')) {
+                const students = event.students || [];
+                const list = document.getElementById('registrations-list');
+                if (students.length === 0) {
+                    list.innerHTML = '<p>No students registered yet.</p>';
+                } else {
+                    list.innerHTML = `
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <thead>
+                                <tr style="background-color: #f8fafc;">
+                                    <th style="padding: 12px; text-align: left; border-bottom: 1px solid #e2e8f0; font-weight: 600;">Name</th>
+                                    <th style="padding: 12px; text-align: left; border-bottom: 1px solid #e2e8f0; font-weight: 600;">Email</th>
+                                    <th style="padding: 12px; text-align: left; border-bottom: 1px solid #e2e8f0; font-weight: 600;">Department</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${students.map(student => `
+                                    <tr style="border-bottom: 1px solid #f1f5f9;">
+                                        <td style="padding: 12px;">${student.name}</td>
+                                        <td style="padding: 12px;">${student.email}</td>
+                                        <td style="padding: 12px;">${student.department}</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    `;
+                }
+            }
+        }
+
+        function exportStudentList() {
+            const event = eventsData[eventId];
+            const students = event.students || [];
+            if (students.length === 0) {
+                alert('No students registered for this event.');
+                return;
+            }
+
+            // Create CSV content
+            const csvContent = [
+                ['Name', 'Email', 'Department'],
+                ...students.map(student => [student.name, student.email, student.department])
+            ].map(row => row.join(',')).join('\n');
+
+            // Create and download file
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            link.setAttribute('href', url);
+            link.setAttribute('download', `${event.name.replace(/[^a-z0-9]/gi, '_').toLowerCase()}_registrations.csv`);
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function sendNotification() {
+            // Simple modal for notification
+            const modal = document.createElement('div');
+            modal.className = 'modal-overlay';
+            modal.style.cssText = `
+                position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+                background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center;
+                z-index: 1000;
+            `;
+            modal.innerHTML = `
+                <div style="background: white; padding: 2rem; border-radius: 1rem; max-width: 500px; width: 90%;">
+                    <h3 style="margin-bottom: 1rem;">Send Notification to Registered Students</h3>
+                    <div style="margin-bottom: 1rem;">
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Subject:</label>
+                        <input type="text" id="notification-subject" style="width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 0.5rem;" placeholder="Enter notification subject">
+                    </div>
+                    <div style="margin-bottom: 1.5rem;">
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Message:</label>
+                        <textarea id="notification-message" style="width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 0.5rem; min-height: 100px;" placeholder="Enter your message"></textarea>
+                    </div>
+                    <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                        <button onclick="closeModal(this)" style="padding: 0.75rem 1.5rem; background: #f3f4f6; border: 1px solid #d1d5db; border-radius: 0.5rem; cursor: pointer;">Cancel</button>
+                        <button onclick="sendNotificationAction()" style="padding: 0.75rem 1.5rem; background: #7c3aed; color: white; border: none; border-radius: 0.5rem; cursor: pointer;">Send</button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        function sendNotificationAction() {
+            const subject = document.getElementById('notification-subject').value;
+            const message = document.getElementById('notification-message').value;
+            if (!subject.trim() || !message.trim()) {
+                alert('Please fill in both subject and message.');
+                return;
+            }
+            // In a real app, this would send the notification
+            alert(`Notification sent to registered students!\n\nSubject: ${subject}\nMessage: ${message}`);
+            closeModal();
+        }
+
+        function closeModal(button) {
+            const modal = button ? button.closest('.modal-overlay') : document.querySelector('.modal-overlay');
+            if (modal) {
+                modal.remove();
+            }
+        }
+
+        function duplicateEvent() {
+            alert('Duplicate Event functionality would create a new event request based on this one.');
+        }
+
+        function cancelEvent() {
+            if (confirm('Are you sure you want to cancel this event?')) {
+                alert('Event cancelled.');
+            }
+        }
+
+        function editRequest() {
+            alert('Edit Request functionality would redirect to the pre-filled request form.');
+            // In a real app, this would navigate to the request form
+        }
+
+        function withdrawRequest() {
+            if (confirm('Are you sure you want to withdraw this event request? This action cannot be undone.')) {
+                alert('Request withdrawn.');
+            }
+        }
+
+        function viewEventSummary() {
+            alert('View Event Summary functionality would show a read-only summary of the completed event.');
+            // In a real app, this could open a modal or navigate to a summary page
+        }
+    </script>
+</body>
+</html>
