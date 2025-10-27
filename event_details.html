@@ -52,9 +52,9 @@
     </main>
 
     <script>
-        // Event data for public event details page
+        // Event data for public event details page and club dashboard events
         const eventsData = {
-            1: {
+            '1': {
                 name: "Tech Talk: The Future of AI",
                 description: "Join us for an insightful discussion on the latest advancements in Artificial Intelligence, featuring industry experts and interactive Q&A sessions.",
                 date: "2025-05-15",
@@ -62,7 +62,7 @@
                 venue: "Auditorium A",
                 photo: "tech.jpg"
             },
-            2: {
+            '2': {
                 name: "Spring Dance Festival",
                 description: "Experience the vibrant energy of our annual Spring Dance Festival with performances from various dance clubs and talented students.",
                 date: "2025-05-20",
@@ -70,7 +70,7 @@
                 venue: "Main Hall",
                 photo: "Spring Dance Festival.jpg"
             },
-            3: {
+            '3': {
                 name: "Music Jam Session",
                 description: "A relaxed evening of music and collaboration where musicians from all skill levels can join in and share their talents.",
                 date: "2025-05-25",
@@ -78,7 +78,7 @@
                 venue: "Music Room 101",
                 photo: "Music Jam Session.jpg"
             },
-            4: {
+            '4': {
                 name: "Art Exhibition",
                 description: "Showcase of student artwork featuring paintings, sculptures, digital art, and photography from our talented art community.",
                 date: "2025-06-01",
@@ -86,7 +86,7 @@
                 venue: "Gallery 3",
                 photo: "Art Exhibition.jpg"
             },
-            5: {
+            '5': {
                 name: "Science Fair",
                 description: "Explore innovative science projects and experiments from our brightest minds in various scientific disciplines.",
                 date: "2025-06-10",
@@ -94,19 +94,117 @@
                 venue: "Science Hall",
                 photo: "Science Fair.jpg"
             },
-            6: {
+            '6': {
                 name: "Charity Run",
                 description: "Join our community charity run to support local causes while staying active and connecting with fellow students.",
                 date: "2025-06-15",
                 time: "7:00 AM - 12:00 PM",
                 venue: "Campus Grounds",
                 photo: "Charity Run.jpg"
+            },
+            'upcoming-1': {
+                name: 'AI & Machine Learning Workshop',
+                description: 'Learn the basics of AI and machine learning.',
+                date: '2024-12-01',
+                time: '10:00 AM - 12:00 PM',
+                venue: 'Turing Block',
+                photo: 'TechClub.png'
+            },
+            'upcoming-2': {
+                name: 'Coding Bootcamp',
+                description: 'Intensive coding training session.',
+                date: '2026-09-15',
+                time: '2:00 PM - 4:00 PM',
+                venue: 'Rockfeller Block',
+                photo: 'tech.jpg'
+            },
+            'upcoming-3': {
+                name: 'Tech Talk: Future of AI',
+                description: 'Expert talk on AI advancements.',
+                date: '2026-09-20',
+                time: '4:00 PM - 6:00 PM',
+                venue: 'Fleming Block',
+                photo: 'Science Fair.jpg'
+            },
+            'upcoming-4': {
+                name: 'Hackathon Prep Session',
+                description: 'Prepare for the upcoming hackathon.',
+                date: '2026-09-25',
+                time: '11:00 AM - 1:00 PM',
+                venue: 'Galileo Block',
+                photo: 'DanceClub.png'
+            },
+            'upcoming-5': {
+                name: 'Web Dev Workshop',
+                description: 'Hands-on web development workshop.',
+                date: '2026-10-01',
+                time: '1:00 PM - 3:00 PM',
+                venue: 'Le Corbusier Block',
+                photo: 'MusicClub.png'
+            },
+            'pending-1': {
+                name: 'Annual Hackathon',
+                description: 'A 24-hour coding competition.',
+                date: '2025-10-15',
+                time: '9:00 AM - 6:00 PM',
+                venue: 'Rockfeller Block',
+                photo: 'tech.jpg'
+            },
+            'pending-2': {
+                name: 'Guest Lecture: The Future of AI',
+                description: 'Expert talk on AI advancements.',
+                date: '2025-09-20',
+                time: '2:00 PM - 4:00 PM',
+                venue: 'Fleming Block',
+                photo: 'Science Fair.jpg'
+            },
+            'pending-3': {
+                name: 'Blockchain Seminar',
+                description: 'Discussion on blockchain technology.',
+                date: '2025-09-10',
+                time: '3:00 PM - 5:00 PM',
+                venue: 'Pythagorous Block',
+                photo: 'Art Exhibition.jpg'
+            },
+            'past-1': {
+                name: 'Intro to Web Dev',
+                description: 'Basic web development workshop.',
+                date: '2024-08-10',
+                time: '11:00 AM - 1:00 PM',
+                venue: 'Galileo Block',
+                photo: 'DanceClub.png'
+            },
+            'past-2': {
+                name: 'Coding Competition 2025',
+                description: 'Annual coding competition.',
+                date: '2024-07-22',
+                time: '10:00 AM - 4:00 PM',
+                venue: 'Le Corbusier Block',
+                photo: 'MusicClub.png'
+            },
+            'past-3': {
+                name: 'Tech-Talks: Blockchain',
+                description: 'Discussion on blockchain technology.',
+                date: '2024-06-05',
+                time: '3:00 PM - 5:00 PM',
+                venue: 'Pythagorous Block',
+                photo: 'Art Exhibition.jpg'
             }
         };
 
+        // Function to get query parameter (compatible with file:// protocol)
+        function getQueryParam(name) {
+            const url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
         // Get event ID from URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const eventId = urlParams.get('id');
+        const eventId = getQueryParam('id');
 
         if (eventId && eventsData[eventId]) {
             const event = eventsData[eventId];
