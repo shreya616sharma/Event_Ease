@@ -49,7 +49,7 @@ Import the provided database.sql file
 Open the solution in Visual Studio 2022  
 Build and run the project  
 Open your browser and go to:  
-http://localhost/EventEase  
+[http://localhost/EventEase ](https://shreya616sharma.github.io/Event_Ease/) 
 
 _____________________________________________________________________________________________________________________________
 
