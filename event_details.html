@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index2.css">
     <link rel="stylesheet" href="Head_of_club_dashboard.css">
+    <!-- .logout-button moved to shared index2.css -->
 </head>
 <body>
     <header class="site-header sticky-header">
@@ -22,7 +23,7 @@
                     <a href="about.html">About us</a>
                 </div>
                 <div class="header-actions">
-                    <a href="login.html" class="login-button">Login/Signup</a>
+                    <a href="login.html" id="header-action" class="header-action">Login/Signup</a>
                 </div>
             </nav>
         </div>
@@ -219,6 +220,39 @@
             document.getElementById('event-name').textContent = 'Event Not Found';
             document.getElementById('event-description').textContent = 'The requested event could not be found.';
         }
+        // RSVP handling moved to rsvp.js so behavior is consistent across pages.
+
     </script>
+    <script>
+        // Header toggle: show Login/Signup when not logged in, Logout when logged in
+        (function () {
+            function isLoggedIn() { return !!localStorage.getItem('userToken'); }
+            document.addEventListener('DOMContentLoaded', () => {
+                const headerAction = document.getElementById('header-action');
+                if (!headerAction) return;
+                if (isLoggedIn()) {
+                    headerAction.textContent = 'Logout';
+                    headerAction.href = '#';
+                    headerAction.classList.add('logout-button');
+                    headerAction.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        localStorage.removeItem('userToken');
+                        window.location.href = 'index.html';
+                    });
+
+                    // When logged in, swap main nav to student links and mark Events active
+                    const navLinks = document.querySelector('.nav-links');
+                    if (navLinks) {
+                        navLinks.innerHTML = '\n                            <a href="student_dashboard.html">My Dashboard</a>\n                            <a href="my_events.html" class="active">Events</a>\n                            <a href="clubs.html">Clubs</a>\n                        ';
+                    }
+                } else {
+                    const returnUrl = encodeURIComponent(window.location.pathname + window.location.search);
+                    headerAction.textContent = 'Login/Signup';
+                    headerAction.href = 'login.html?return=' + returnUrl;
+                }
+            });
+        })();
+    </script>
+    <script src="rsvp.js"></script>
 </body>
 </html>
