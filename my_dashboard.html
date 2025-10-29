@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dashboard - EventEase</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Copied styles from student_dashboard.html (kept identical for consistency) */
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(300deg, #f5f3ff, #eef2ff, #fde2e4);
+            background-size: 180% 180%;
+            animation: dreamy-gradient-animation 18s ease infinite;
+            color: #334155;
+            margin: 0;
+        }
+        @keyframes dreamy-gradient-animation { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .container { width: 100%; max-width: 1280px; margin-left: auto; margin-right: auto; padding: 1.5rem; box-sizing: border-box; }
+        .site-header { background-color: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 10; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .header-nav { display: flex; justify-content: space-between; align-items: center; height: 4rem; }
+        .logo-link { font-size: 1.5rem; font-weight: 800; color: #1e293b; text-decoration: none; }
+        .nav-links { display: none; }
+        @media (min-width: 768px) { .nav-links { display: flex; gap: 2rem; } }
+        .nav-links a { font-weight: 600; color: #475569; text-decoration: none; transition: color 0.2s; padding: 0.5rem 0; border-bottom: 2px solid transparent; }
+        .nav-links a.active, .nav-links a:hover { color: #7c3aed; border-bottom-color: #7c3aed; }
+        .logout-button { background-color: #ef4444; color: white; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 600; text-decoration: none; transition: background-color 0.2s; }
+        .logout-button:hover { background-color: #dc2626; }
+        main { padding-top: 2.5rem; padding-bottom: 4rem; }
+        .card { background-color: rgba(255, 255, 255, 0.8); backdrop-filter: blur(5px); border-radius: 1rem; padding: 2rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06); border: 1px solid rgba(226, 232, 240, 0.5); }
+        .grid-layout { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); }
+        .subsection-title { font-size: 1.5rem; font-weight: 700; color: #1e293b; margin-top: 2.5rem; margin-bottom: 1.5rem; }
+        .details-list dt { font-weight: 600; color: #1e293b; }
+        .details-list dd { margin-left: 0; color: #475569; margin-bottom: 1rem; }
+        .dashboard-summary-grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; margin-top: 2.5rem; }
+        @media (min-width: 1024px) { .dashboard-summary-grid { grid-template-columns: 3fr 2fr; gap: 1.5rem; } .dashboard-summary-grid .grid-layout { grid-template-columns: 1fr; } }
+        .summary-column > .subsection-title { margin-top: 0; }
+        .simple-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 1.5rem; }
+        .simple-list-item { display: flex; align-items: center; gap: 1rem; }
+        .list-item-image { width: 50px; height: 50px; border-radius: 0.75rem; object-fit: cover; flex-shrink: 0; }
+        .list-item-content { flex-grow: 1; }
+        .list-item-title { margin: 0; font-weight: 600; color: #1e293b; }
+        .list-item-subtitle { margin: 0.25rem 0 0 0; color: #64748b; font-size: 0.9rem; }
+        .event-card, .club-card { display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s; width: 350px; max-width: 350px; }
+        .event-card:hover, .club-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); }
+        .card-title { font-size: 1.25rem; font-weight: 700; color: #1e293b; margin: 0; }
+        .card-details-list { margin: 1rem 0; display: flex; flex-direction: column; gap: 0.5rem; }
+        .card-detail-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; color: #475569; }
+        .card-detail-item svg { width: 1rem; height: 1rem; color: #94a3b8; flex-shrink: 0; }
+        .card-detail-item span { color: #1e293b; font-weight: 500; }
+        .card-description { margin-top: 0; color: #475569; flex-grow: 1; }
+        .card-button { margin-top: 1.5rem; width: 100%; background-color: #7c3aed; color: white; padding: 0.75rem 0; border: none; border-radius: 0.5rem; font-weight: 600; cursor: pointer; transition: background-color 0.2s; }
+        .card-button:hover { background-color: #6d28d9; }
+        .card-button.secondary { background-color: #64748b; }
+        .card-button.secondary:hover { background-color: #475569; }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <nav class="header-nav">
+                <a href="index.html" class="logo-link">EventEase</a>
+                <div class="nav-links">
+                    <a href="student_dashboard.html" class="active">My Dashboard</a>
+                    <a href="my_events.html">Events</a>
+                    <a href="my_clubs.html">Clubs</a>
+                </div>
+                <a href="index.html" class="logout-button">Logout</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Extracted My Dashboard Section -->
+        <section id="my-dashboard">
+            <div class="page-header">
+                <h1 class="page-title">My Dashboard</h1>
+                <p class="page-subtitle">Welcome back, Alex!</p>
+            </div>
+
+            <div class="dashboard-summary-grid">
+                <div class="summary-column">
+                    <h2 class="subsection-title">My Upcoming Events</h2>
+                    <div class="grid-layout">
+                        <div class="card event-card" data-poster="https://placehold.co/400x200/db2777/ffffff?text=Performance" data-title="Annual Dance Showcase" data-date="Sept 12, 2025 at 8:00 PM" data-venue="Grand Auditorium" data-club="Dance Club" data-description="A night of spectacular performances awaits.">
+                            <h3 class="card-title">Annual Dance Showcase</h3>
+                            <div class="card-details-list">
+                                <p class="card-detail-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg> <span>Sept 12, 2025 at 8:00 PM</span></p>
+                                <p class="card-detail-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg> <span>Grand Auditorium</span></p>
+                            </div>
+                            <button class="card-button secondary view-button">View</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="summary-column">
+                    <h2 class="subsection-title">My Clubs</h2>
+                    <div class="card">
+                        <ul class="simple-list">
+                            <li class="simple-list-item">
+                                <img src="https://placehold.co/60x60/8b5cf6/ffffff?text=T" alt="Tech Club logo" class="list-item-image">
+                                <div class="list-item-content">
+                                    <h4 class="list-item-title">Tech Club</h4>
+                                    <p class="list-item-subtitle">Member since Fall 2024</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2 style="font-size: 1.5rem; font-weight: 700; color: #1e293b;">Your Details</h2>
+                <dl class="details-list" style="margin-top: 1.5rem;">
+                    <dt>Name</dt>
+                    <dd>Alex Doe</dd>
+                    <dt>Email</dt>
+                    <dd>alex.doe@university.edu</dd>
+                    <dt>Contact Number</dt>
+                    <dd>+1 234 567 890</dd>
+                    <dt>Department</dt>
+                    <dd>Computer Science</dd>
+                </dl>
+            </div>
+        </section>
+    </main>
+
+    <!-- Reuse event modal script for "View" buttons -->
+    <script src="student_dashboard.js"></script>
+    <script src="rsvp.js"></script>
+</body>
+</html>

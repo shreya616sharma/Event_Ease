@@ -6,25 +6,26 @@
     <title>Clubs - EventEase</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="index2.css" />
-    <link rel="stylesheet" href="clubs.css" />
+    <link rel="stylesheet" href="clubsLoggedIn.css" />
 </head>
 <body>
-    <header class="site-header sticky-header">
+    <header class="site-header">
         <div class="container">
             <nav class="header-nav">
                 <a href="index.html" class="logo-link">EventEase</a>
                 <div class="nav-links">
-                    <a href="index.html" >Home</a>
-                    <a href="event.html">Events</a>
-                    <a href="clubs.html">Clubs</a>
-                    <a href="about.html">About us</a>
+                    <a href="student_dashboard.html" >My Dashboard</a>
+                    <a href="my_events.html">Events</a>
+                    <a href="clubsLoggedIn.html" class="active">Clubs</a>
                 </div>
                 <div class="header-actions">
-                    <a href="login.html" class="login-button">Login/Signup</a>
+                    <!-- This element is toggled by script: shows Login/Signup when not authenticated and Logout when authenticated -->
+                    <a href="index.html" id="header-action" class="header-action">Logout</a>
                 </div>
             </nav>
         </div>
     </header>
+
     <div class="search-container">
         <div class="search-wrapper">
             <img src="https://img.icons8.com/?size=100&id=112468&format=png&color=7950F2" alt="Search Icon" class="search-icon" />
@@ -84,6 +85,6 @@
         </div>
     </div>
 
-    <script src="clubsNotLoggedIn.js"></script>
+    <script src="clubLoggedIn.js"></script>
 </body>
 </html>

@@ -93,6 +93,18 @@ body {
     background-color: #6d28d9;
 }
 
+/* Logout button styles (shared) */
+.logout-button {
+    background-color: #ef4444; /* red-500 */
+    color: white;
+    padding: 0.625rem 1.25rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+.logout-button:hover { background-color: #dc2626; }
+
 /* Hero Section */
 .hero-section {
     min-height: 100vh;
