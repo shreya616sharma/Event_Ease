@@ -626,9 +626,7 @@ function getEventsData() {
         function populateEvents() {
             // Show loading state
             document.getElementById('events-loading').style.display = 'block';
-            document.getElementById('upcoming-events').style.display = 'none';
-            document.getElementById('pending-requests').style.display = 'none';
-            document.getElementById('past-events').style.display = 'none';
+            document.querySelectorAll('#manage-events .tab-content').forEach(tc => tc.style.display = 'none');
 
             // Simulate loading delay
             setTimeout(() => {
@@ -751,11 +749,8 @@ function getEventsData() {
                 document.querySelector('.tab-button[onclick*="pending-requests"]').textContent = `Pending (${pending.length})`;
                 document.querySelector('.tab-button[onclick*="past-events"]').textContent = `Past (${past.length})`;
 
-                // Hide loading state and show content
+                // Hide loading state
                 document.getElementById('events-loading').style.display = 'none';
-                document.getElementById('upcoming-events').style.display = 'block';
-                document.getElementById('pending-requests').style.display = 'block';
-                document.getElementById('past-events').style.display = 'block';
             }, 1000); // 1 second delay to simulate loading
         }
 
