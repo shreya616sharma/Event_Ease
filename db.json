@@ -1,0 +1,72 @@
+{
+  "users": [
+    {
+      "id": "0762",
+      "fullName": "Shreya ",
+      "email": "sunaina@chitkara.edu.in",
+      "contact": "6878755735",
+      "department": "kzsdjvb",
+      "password": "dhbvb",
+      "role": "student"
+    },
+    {
+      "id": "c18e",
+      "fullName": "ShreyaHeadOfClub",
+      "email": "ShreyaHeadOfClub@chitkara.edu.in",
+      "clubName": "Shally ",
+      "password": "fjgdfn",
+      "role": "club-head"
+    },
+    {
+      "id": "9b5a",
+      "email": "shallyAdmin@chitkara.edu.in",
+      "password": "dmnsbf",
+      "role": "admin"
+    },
+    {
+      "id": "2b66",
+      "fullName": "djfn",
+      "email": "sachdevamohita5@chitkara.edu.in",
+      "contact": "9856952516",
+      "department": "dfjbnj",
+      "password": "nvm ",
+      "role": "student"
+    },
+    {
+      "id": "0522",
+      "fullName": "Sunaina Sharma ",
+      "email": "sachdevamohita5@chitkara.edu.in",
+      "contact": "6878755735",
+      "department": "kzsdjvb",
+      "password": "skfuh vow",
+      "role": "student"
+    },
+    {
+      "id": "2815",
+      "fullName": "Sunaina Sharma ",
+      "email": "sachdevamohita5@chitkara.edu.in",
+      "contact": "6878755735",
+      "department": "kzsdjvb",
+      "password": "lrbfig vj ",
+      "role": "student"
+    },
+    {
+      "id": "bd01",
+      "fullName": "Sunaina Sharma ",
+      "email": "sachdevamohita5@chitkara.edu.in",
+      "contact": "6878755735",
+      "department": "kzsdjvb",
+      "password": "ewlih rfj",
+      "role": "student"
+    },
+    {
+      "id": "3ce7",
+      "fullName": "Shreya ",
+      "email": "shreya1682.becse24@chitkara.edu.in",
+      "contact": "8787904322",
+      "department": "cse",
+      "password": "hihihi",
+      "role": "student"
+    }
+  ]
+}

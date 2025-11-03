@@ -56,7 +56,7 @@
             <button onclick="showRoleSelection()" class="back-button">&larr; Back</button>
             <h2>Student Sign Up</h2>
             <p class="subtitle" style="margin-bottom: 1.5rem;">Create an account to get started.</p>
-            <form>
+            <form id="student-signup">
                 <input class="form-input student-focus" type="text" placeholder="Full Name" name="full_name" required pattern="[A-Za-z\s]+">
                 <input class="form-input student-focus" type="email" placeholder="Official Chitkara Email Address" name="email" required pattern="[a-zA-Z0-9.]+@chitkara\.edu\.in">
                 <input class="form-input student-focus" type="tel" placeholder="Contact Number" name="contact" required pattern="[0-9]{10}">
@@ -85,11 +85,11 @@
             <button onclick="showRoleSelection()" class="back-button">&larr; Back</button>
             <h2>Club Head Sign Up</h2>
             <p class="subtitle" style="margin-bottom: 1.5rem;">Register your club to post events.</p>
-            <form>
-                <input class="form-input club-head-focus" type="text" placeholder="Full Name" required pattern="[A-Za-z\s]+" >
-                <input class="form-input club-head-focus" type="email" placeholder="Email Address" required>
-                <input class="form-input club-head-focus" type="text" placeholder="Club Name" required>
-                <input class="form-input club-head-focus" type="password" placeholder="Password" required>
+            <form id="club-head-signup">
+                <input id="club-head-name" class="form-input club-head-focus" type="text" placeholder="Full Name" required pattern="[A-Za-z\s]+" >
+                <input id="club-head-email" class="form-input club-head-focus" type="email" placeholder="Email Address" required pattern="[a-zA-Z0-9.]+@chitkara\.edu\.in">
+                <input id="club-head-clubname" class="form-input club-head-focus" type="text" placeholder="Club Name" required>
+                <input id="club-head-password" class="form-input club-head-focus" type="password" placeholder="Password" required>
                 <button type="submit" class="submit-button club-head-submit">Register Club</button>
             </form>
             <p class="switch-form-text">Already have an account? <button onclick="switchView('club-head-signup-form', 'club-head-login-form')" class="switch-form-button club-head-link">Log In</button></p>
@@ -113,9 +113,9 @@
             <button onclick="showRoleSelection()" class="back-button">&larr; Back</button>
             <h2>Admin Sign Up</h2>
             <p class="subtitle" style="margin-bottom: 1.5rem;">Create a new administrator account.</p>
-            <form>
-                <input class="form-input admin-focus" type="email" placeholder="Email Address" required pattern="[a-zA-Z0-9.]+@chitkara\.edu\.in">
-                <input class="form-input admin-focus" type="password" placeholder="Password" required>
+            <form id="admin-signup">
+                <input id="admin-email" class="form-input admin-focus" type="email" placeholder="Email Address" required pattern="[a-zA-Z0-9.]+@chitkara\.edu\.in">
+                <input id="admin-password" class="form-input admin-focus" type="password" placeholder="Password" required>
                 <button type="submit" class="submit-button admin-submit">Create Admin Account</button>
             </form>
             <p class="switch-form-text">Already an Admin? <button onclick="switchView('admin-signup-form', 'admin-login-form')" class="switch-form-button admin-link">Log In</button></p>

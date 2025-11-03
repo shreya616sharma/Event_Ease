@@ -1,4 +1,3 @@
-// Simulate user login status (for demo, set to false)
 let isLoggedIn = false;
 
 const favoriteStars = document.querySelectorAll('.favorite-star');
