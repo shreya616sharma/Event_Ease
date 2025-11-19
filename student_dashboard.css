@@ -1,300 +1,294 @@
-        /* General Body and Background Styles */
+        /* Define variables and basic reset */
+        :root {
+            /* Updated to French Violet */
+            --primary-color: #7C3AED;
+            --secondary-color: #8B5CF6;
+            --accent-color: #f59e0b;
+            --font-family: 'Inter', sans-serif;
+            --max-width: 1200px;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(300deg, #f5f3ff, #eef2ff, #fde2e4);
-            background-size: 180% 180%;
-            animation: dreamy-gradient-animation 18s ease infinite;
-            color: #334155;
+            font-family: var(--font-family);
             margin: 0;
+            padding: 0;
+            /* Pastel gradient: Pink, Gold, Lilac */
+            background: linear-gradient(135deg, #fce4ec 0%, #fff8e1 50%, #e0cffc 100%);
+            background-attachment: fixed; 
+            color: #1f2937;
         }
 
-        @keyframes dreamy-gradient-animation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Container */
-        .container {
-            width: 100%;
-            max-width: 1280px;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 1.5rem;
-            box-sizing: border-box;
-        }
-
-        /* Header and Navigation */
-        .site-header {
-            background-color: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid #e2e8f0;
+        /* 1. Header Styling */
+        .sticky-header {
             position: sticky;
             top: 0;
-            z-index: 10;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            background-color: white;
+            padding: 1rem 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 50;
+            display: flex;
+            justify-content: center; 
         }
+
+        .header-content {
+            width: 100%;
+            max-width: var(--max-width);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header-logo a {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color); 
+            text-decoration: none;
+        }
+
         .header-nav {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 4rem; /* 64px */
-        }
-        .logo-link {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: #1e293b;
-            text-decoration: none;
-        }
-        .nav-links {
-            display: none;
-        }
-        @media (min-width: 768px) {
-            .nav-links {
-                display: flex;
-                gap: 2rem;
-            }
-        }
-        .nav-links a {
-            font-weight: 600;
-            color: #475569;
-            text-decoration: none;
-            transition: color 0.2s;
-            padding: 0.5rem 0;
-            border-bottom: 2px solid transparent;
-        }
-        .nav-links a.active,
-        .nav-links a:hover {
-            color: #7c3aed;
-            border-bottom-color: #7c3aed;
-        }
-        /* .logout-button moved to shared index2.css */
-
-        /* Main Content */
-        main {
-            padding-top: 2.5rem;
-            padding-bottom: 4rem;
-        }
-
-        /* Section Styling */
-        .dashboard-section {
-            display: none; /* Hidden by default */
-            animation: fadeIn 0.5s ease-out;
-        }
-        .dashboard-section.active {
-            display: block; /* Shown when active */
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Page Header */
-        .page-header {
-            margin-bottom: 2.5rem;
-        }
-        .page-title {
-            font-size: 2.25rem;
-            font-weight: 800;
-            color: #1e293b;
-        }
-        .page-subtitle {
-            margin-top: 0.5rem;
-            font-size: 1.125rem;
-            color: #64748b;
-        }
-        
-        /* Tab Navigation for Sections */
-        .tab-nav {
-            display: flex;
-            gap: 1rem;
-            border-bottom: 1px solid #cbd5e1;
-            margin-bottom: 2rem;
-        }
-        .tab-button {
-            padding: 0.75rem 1.5rem;
-            border: none;
-            background: none;
-            cursor: pointer;
-            font-weight: 600;
-            color: #475569;
-            border-bottom: 3px solid transparent;
-            transition: color 0.2s, border-color 0.2s;
-        }
-        .tab-button:hover {
-            color: #1e293b;
-        }
-        .tab-button.active {
-            color: #7c3aed;
-            border-bottom-color: #7c3aed;
-        }
-        .tab-content {
-            display: none;
-        }
-        .tab-content.active {
-            display: block;
-        }
-
-        /* Card Styles */
-        .card {
-            background-color: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(5px);
-            border-radius: 1rem;
-            padding: 2rem;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
-            border: 1px solid rgba(226, 232, 240, 0.5);
-        }
-        
-        /* Grid Layout for Cards */
-        .grid-layout {
-            display: grid;
             gap: 1.5rem;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-        }
-
-        /* My Dashboard Section */
-        .subsection-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #1e293b;
-            margin-top: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-        .details-list dt {
             font-weight: 600;
-            color: #1e293b;
-        }
-        .details-list dd {
-            margin-left: 0;
-            color: #475569;
+            margin-top: 1rem;
             margin-bottom: 1rem;
         }
 
-        .dashboard-summary-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2.5rem;
-            margin-top: 2.5rem;
+        .header-nav a {
+            color: #6b7280;
+            text-decoration: none;
+            transition: color 0.15s ease-in-out;
         }
 
-        @media (min-width: 1024px) {
-            .dashboard-summary-grid {
-                /* Changed proportions for better balance and spacing */
-                grid-template-columns: 3fr 2fr;
-                gap: 1.5rem;
-            }
-            
-            /* Specific override to ensure the single event card in the dashboard summary fills its column */
-            .dashboard-summary-grid .grid-layout {
-                grid-template-columns: 1fr;
-            }
+        .header-nav a:hover {
+            color: var(--primary-color); 
+        }
+
+        /* NEW: Auth Button Styles */
+        .auth-button {
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            min-width: 100px; /* Ensure consistent width */
+            text-align: center;
+            /* Push the button down on mobile so it doesn't overlap logo/nav */
+            margin-top: 1rem;
         }
         
-        .summary-column > .subsection-title {
-            margin-top: 0;
+        /* Green for Login (Logged Out State) */
+        .auth-button.login-state {
+            background-color: #10B981; /* Green */
+            color: white;
+        }
+        .auth-button.login-state:hover {
+            background-color: #059669; /* Darker Green */
+        }
+        
+        /* Red for Logout (Logged In State) */
+        .auth-button.logout-state {
+            background-color: #EF4444; /* Red */
+            color: white;
+        }
+        .auth-button.logout-state:hover {
+            background-color: #DC2626; /* Darker Red */
         }
 
-        /* My Clubs List */
-        .simple-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
+        /* Media query for desktop/tablet header layout */
+        @media (min-width: 768px) {
+            .header-content {
+                /* Layout items horizontally: Logo | Nav | Button */
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .header-nav {
+                margin: 0;
+                flex-grow: 1; 
+                justify-content: center;
+            }
+            .auth-button {
+                margin-top: 0; /* Remove top margin on desktop */
+                flex-shrink: 0;
+            }
+            .header-logo {
+                 flex-shrink: 0;
+            }
+        }
+
+        /* 2. Main Content Area */
+        .main-content {
+            padding: 1.5rem;
+            margin: 0 auto;
+            max-width: var(--max-width);
+        }
+
+        /* 3. Section Headers */
+        .section-header h2 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: #1f2937;
+            margin-bottom: 0.25rem;
+        }
+
+        .section-header p {
+            font-size: 1.25rem;
+            color: #4b5563;
+            margin-bottom: 2rem;
+        }
+
+        .sub-header h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        /* 4. Event Cards Layout (The responsive grid) */
+        .event-cards-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Default: 1 column */
             gap: 1.5rem;
         }
-        .simple-list-item {
+        
+        /* Tablet layout: 2 columns */
+        @media (min-width: 640px) {
+            .event-cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Desktop layout: max 3 columns */
+        @media (min-width: 1024px) {
+            .event-cards-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .event-card {
+            background-color: white; 
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .event-card:hover {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .event-card h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary-color); 
+            margin-bottom: 0.5rem;
+        }
+
+        .event-card p {
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-bottom: 0.25rem;
+        }
+
+        .event-card span {
+            font-weight: 500;
+            color: #374151;
+        }
+
+        .view-button {
+            width: 100%;
+            background-color: var(--primary-color); 
+            color: white;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            border: none;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: background-color 0.15s;
+        }
+
+        .view-button:hover {
+            background-color: var(--secondary-color); 
+        }
+
+        /* 5. Club Cards Layout */
+        .club-card {
+            background-color: white; 
+            padding: 1rem;
             display: flex;
             align-items: center;
             gap: 1rem;
-        }
-        .list-item-image {
-            width: 50px;
-            height: 50px;
             border-radius: 0.75rem;
-            object-fit: cover;
-            flex-shrink: 0;
-        }
-        .list-item-content {
-            flex-grow: 1;
-        }
-        .list-item-title {
-            margin: 0;
-            font-weight: 600;
-            color: #1e293b;
-        }
-        .list-item-subtitle {
-            margin: 0.25rem 0 0 0;
-            color: #64748b;
-            font-size: 0.9rem;
-        }
-        
-        /* Event & Club Card Styles */
-        .event-card, .club-card {
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.2s, box-shadow 0.2s;
-            width: 350px;
-            max-width: 350px;
-        }
-        .event-card:hover, .club-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s;
         }
 
-        .card-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: #1e293b;
-            margin: 0;
+        .club-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
-        .card-details-list {
-            margin: 1rem 0;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-        .card-detail-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.9rem;
-            color: #475569;
-        }
-        .card-detail-item svg {
-            width: 1rem;
-            height: 1rem;
-            color: #94a3b8;
+
+        .club-icon-container {
             flex-shrink: 0;
+            width: 3rem;
+            height: 3rem;
         }
-        .card-detail-item span {
-            color: #1e293b;
-            font-weight: 500;
-        }
-        .card-description {
-            margin-top: 0;
-            color: #475569;
-            flex-grow: 1; /* Pushes button to the bottom */
-        }
-        .card-button {
-            margin-top: 1.5rem;
+        
+        .club-icon {
             width: 100%;
-            background-color: #7c3aed;
-            color: white;
-            padding: 0.75rem 0;
-            border: none;
-            border-radius: 0.5rem;
+            height: 100%;
+        }
+
+        .club-details .club-name {
+            font-size: 1.125rem;
             font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.2s;
+            color: #1f2937;
         }
-        .card-button:hover {
-            background-color: #6d28d9;
+        
+        .club-details .member-since {
+            font-size: 0.875rem;
+            color: #6b7280;
         }
-        .card-button.secondary {
-             background-color: #64748b;
+
+        /* 6. User Details Section */
+        .details-card {
+            max-width: 28rem;
+            background-color: white; 
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e5e7eb;
         }
-        .card-button.secondary:hover {
-            background-color: #475569;
+
+        .detail-row {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            padding: 0.75rem 0;
+            border-top: 1px solid #f3f4f6;
+        }
+
+        .detail-row:first-child {
+            border-top: none;
+        }
+
+        .detail-label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #6b7280;
+        }
+
+        .detail-value {
+            font-size: 0.875rem;
+            color: #1f2937;
+            margin-top: 0.25rem;
+        }
+
+        /* Scroll padding for fixed header */
+        html {
+            scroll-padding-top: 5rem;
         }

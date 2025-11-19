@@ -3,281 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Dashboard - EventEase</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="index2.css">
+    <title>EventEase Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="student_dashboard.css">
 </head>
-<body>
+<body class="antialiased">
 
-    <header class="site-header">
-        <div class="container">
-            <nav class="header-nav">
-                <a href="index.html" class="logo-link">EventEase</a>
-                <div class="nav-links">
-                    <a href="student_dashboard.html" class="active">My Dashboard</a>
-                    <a href="my_events.html">Events</a>
-                    <a href="clubsLoggedIn.html">Clubs</a>
-                </div>
-                <div class="header-actions">
-                    <!-- This element is toggled by script: shows Login/Signup when not authenticated and Logout when authenticated -->
-                    <a href="login.html" id="header-action" class="header-action">Login/Signup</a>
-                </div>
+    <!-- 1. Header (Sticky and Responsive) -->
+    <header class="sticky-header">
+        <div class="header-content">
+            
+            <!-- Left: EventEase Logo/Title -->
+            <div class="header-logo">
+                <a href="#dashboard">EventEase</a>
+            </div>
+
+            <!-- Center: Navigation Links -->
+            <nav class="header-nav" id="headerNav">
+                <a href="#dashboard">My Dashboard</a>
+                <a href="#events">Events</a>
+                <a href="#clubs">Clubs</a>
             </nav>
+
+            <!-- Right: Login/Logout Button -->
+            <button id="authButton" class="auth-button login-state">Login</button>
         </div>
     </header>
 
-    <main class="container">
-        <!-- My Dashboard Section -->
-        <section id="my-dashboard" class="dashboard-section active">
-            <div class="page-header">
-                <h1 class="page-title">My Dashboard</h1>
-                <p class="page-subtitle">Welcome back Shreya!</p>
-            </div>
+    <!-- Main Content Area -->
+    <main class="main-content">
 
-            <div class="dashboard-summary-grid">
-                <div class="summary-column">
-                    <h2 class="subsection-title">My Upcoming Events</h2>
-                    <div class="grid-layout">
-                        <div class="card event-card" data-poster="https://placehold.co/400x200/db2777/ffffff?text=Performance" data-title="Annual Dance Showcase" data-date="Sept 12, 2025 at 8:00 PM" data-venue="Grand Auditorium" data-club="Dance Club" data-description="A night of spectacular performances awaits.">
-                            <h3 class="card-title">Annual Dance Showcase</h3>
-                            <div class="card-details-list">
-                                <p class="card-detail-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg> <span>Sept 12, 2025 at 8:00 PM</span></p>
-                                <p class="card-detail-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg> <span>Grand Auditorium</span></p>
-                            </div>
-                            <button class="card-button secondary view-button">View</button>
-                        </div>
-                        <!-- More registered events could be listed here -->
-                    </div>
-                </div>
-                <div class="summary-column">
-                    <h2 class="subsection-title">My Clubs</h2>
-                    <div class="card">
-                        <ul class="simple-list">
-                            <li class="simple-list-item">
-                                <img src="https://placehold.co/60x60/8b5cf6/ffffff?text=T" alt="Tech Club logo" class="list-item-image">
-                                <div class="list-item-content">
-                                    <h4 class="list-item-title">Tech Club</h4>
-                                    <p class="list-item-subtitle">Member since Fall 2024</p>
-                                </div>
-                            </li>
-                             <!-- More joined clubs could be listed here -->
-                        </ul>
-                    </div>
-                </div>
+        <!-- 2. Dashboard Header -->
+        <section id="dashboard" class="section-header">
+            <h2>My Dashboard</h2>
+            <p>Welcome back, Sunaina Sharma</p>
+        </section>
+
+        <!-- 3. My Upcoming Events Section -->
+        <section id="upcoming-events" style="margin-bottom: 3rem;">
+            <div class="sub-header">
+                <h3>My Upcoming Events</h3>
             </div>
             
-            <div class="card">
-                <h2 style="font-size: 1.5rem; font-weight: 700; color: #1e293b;">Your Details</h2>
-                <dl class="details-list" style="margin-top: 1.5rem;">
-                    <dt>Name</dt>
-                    <dd>Shreya Sharma</dd>
-                    <dt>Email</dt>
-                    <dd>Shreya1792@chitkara.edu</dd>
-                    <dt>Contact Number</dt>
-                    <dd>+91 25869 45975</dd>
-                    <dt>Department</dt>
-                    <dd>Computer Science</dd>
-                </dl>
+            <!-- Event Cards Grid (Responsive: 1 col default, 2 cols tablet, 3 cols desktop) -->
+            <div id="eventCards" class="event-cards-grid">
+
+                <!-- Card 1: Annual Dance Showcase -->
+                <div class="event-card">
+                    <h4>Annual Dance Showcase</h4>
+                    <p>Date & Time: <span>Dec 15, 2025 | 6:00 PM</span></p>
+                    <p style="margin-bottom: 1rem;">Location: <span>Auditorium, Main Campus</span></p>
+                    <button class="view-button">
+                        View Details
+                    </button>
+                </div>
+
+                <!-- Card 2: Tech Innovation Workshop  -->
+                <div class="event-card">
+                    <h4>Tech Innovation Workshop</h4>
+                    <p>Date & Time: <span>Nov 28, 2025 | 10:00 AM</span></p>
+                    <p style="margin-bottom: 1rem;">Location: <span>C-Block Lab 404</span></p>
+                    <button class="view-button">
+                        View Details
+                    </button>
+                </div>
+
+                <!-- Card 3: Literary Meetup  -->
+                <div class="event-card">
+                    <h4>Literary Meetup: Poetry</h4>
+                    <p>Date & Time: <span>Dec 01, 2025 | 4:30 PM</span></p>
+                    <p style="margin-bottom: 1rem;">Location: <span>Central Library, Reading Hall</span></p>
+                    <button class="view-button">
+                        View Details
+                    </button>
+                </div>
+
+                <!-- Card 4: Marketing Strategy Session  -->
+                <div class="event-card">
+                    <h4>Marketing Strategy Session</h4>
+                    <p>Date & Time: <span>Jan 10, 2026 | 2:00 PM</span></p>
+                    <p style="margin-bottom: 1rem;">Location: <span>G-Block Seminar Room</span></p>
+                    <button class="view-button">
+                        View Details
+                    </button>
+                </div>
+                
             </div>
         </section>
 
-        <!-- Events Section -->
-        <section id="events" class="dashboard-section">
-            <div class="page-header">
-                <h1 class="page-title">Events</h1>
-                <p class="page-subtitle">Your guide to campus happenings.</p>
-            </div>
-            <div class="tab-nav">
-                <button class="tab-button active" onclick="showTab('events', 'upcoming-events', this)">Upcoming</button>
-                <button class="tab-button" onclick="showTab('events', 'registered-events', this)">Registered</button>
-                <button class="tab-button" onclick="showTab('events', 'past-events', this)">Past Events</button>
+        <!-- 4. My Clubs Section -->
+        <section id="my-clubs" style="margin-bottom: 3rem;">
+            <div class="sub-header">
+                <h3>My Clubs</h3>
             </div>
 
-            <!-- Upcoming Events -->
-            <div id="upcoming-events" class="tab-content active">
-                <div class="grid-layout">
-                    <div class="card event-card" data-poster="https://placehold.co/400x200/9333ea/ffffff?text=Workshop" data-title="AI & Machine Learning Workshop" data-date="Sept 5, 2025 at 2:00 PM" data-venue="Tech Park, Room 101" data-club="Tech Club" data-description="Join us for a hands-on workshop covering the fundamentals of AI.">
-                        <h3 class="card-title">AI & Machine Learning Workshop</h3>
-                        <div class="card-details-list">
-                            <p class="card-detail-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg> <span>Sept 5, 2025 at 2:00 PM</span></p>
-                            <p class="card-detail-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg> <span>Tech Park, Room 101</span></p>
-                            <p class="card-detail-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"></path></svg> <span>Hosted by Tech Club</span></p>
-                            <p class="card-detail-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v.01"></path></svg> <span>Free</span></p>
-                        </div>
-                        <p class="card-description">Join us for a hands-on workshop covering the fundamentals of AI.</p>
-                        <button class="card-button view-button">View</button>
+            <div class="event-cards-grid">
+                <!-- Club Card 1 -->
+                <div class="club-card">
+                    <!-- Club Pic (Placeholder SVG) -->
+                    <div class="club-icon-container">
+                        <svg class="club-icon" style="color: var(--accent-color);" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                        </svg>
                     </div>
-                     <div class="card event-card" data-poster="https://placehold.co/400x200/16a34a/ffffff?text=Concert" data-title="Open Mic Night" data-date="Sept 18, 2025 at 7:00 PM" data-venue="Student Union Hall" data-club="Music Club" data-description="Share your talent or just enjoy the music. All are welcome!">
-                        <h3 class="card-title">Open Mic Night</h3>
-                        <div class="card-details-list">
-                            <p class="card-detail-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg> <span>Sept 18, 2025 at 7:00 PM</span></p>
-                            <p class="card-detail-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg> <span>Student Union Hall</span></p>
-                            <p class="card-detail-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"></path></svg> <span>Hosted by Music Club</span></p>
-                             <p class="card-detail-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v.01"></path></svg> <span>Free to attend</span></p>
-                        </div>
-                        <p class="card-description">Share your talent or just enjoy the music. All are welcome!</p>
-                        <button class="card-button view-button">View</button>
+                    <!-- Club Details -->
+                    <div class="club-details">
+                        <div class="club-name">Coding Enthusiasts</div>
+                        <div class="member-since">Member since: Oct 2024</div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Registered Events -->
-            <div id="registered-events" class="tab-content">
-                <div class="grid-layout">
-                    <div class="card event-card" data-poster="https://placehold.co/400x200/db2777/ffffff?text=Performance" data-title="Annual Dance Showcase" data-date="Sept 12, 2025 at 8:00 PM" data-venue="Grand Auditorium" data-club="Dance Club" data-description="You've got tickets! A night of spectacular performances awaits.">
-                        <h3 class="card-title">Annual Dance Showcase</h3>
-                        <div class="card-details-list">
-                            <p class="card-detail-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg> <span>Sept 12, 2025 at 8:00 PM</span></p>
-                            <p class="card-detail-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg> <span>Grand Auditorium</span></p>
-                            <p class="card-detail-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"></path></svg> <span>Hosted by Dance Club</span></p>
-                            <p class="card-detail-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"></path></svg> <span>Ticket Price: $5</span></p>
-                        </div>
-                        <p class="card-description">You've got tickets! A night of spectacular performances awaits.</p>
-                        <button class="card-button secondary view-button">View</button>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Past Events -->
-            <div id="past-events" class="tab-content">
-                 <div class="grid-layout">
-                    <div class="card event-card" data-poster="https://placehold.co/400x200/ca8a04/ffffff?text=Career+Fair" data-title="University Career Fair" data-date="Aug 20, 2025 at 10:00 AM" data-venue="Main Gymnasium" data-club="Career Services" data-description="Attended. An opportunity to connect with top employers.">
-                        <h3 class="card-title">University Career Fair</h3>
-                        <div class="card-details-list">
-                             <p class="card-detail-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg> <span>Aug 20, 2025 at 10:00 AM</span></p>
-                            <p class="card-detail-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg> <span>Main Gymnasium</span></p>
-                            <p class="card-detail-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"></path></svg> <span>Hosted by Career Services</span></p>
-                            <p class="card-detail-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v.01"></path></svg> <span>Free</span></p>
-                        </div>
-                        <p class="card-description">Attended. An opportunity to connect with top employers.</p>
-                        <button class="card-button secondary view-button">View</button>
+                <!-- Club Card 2 -->
+                <div class="club-card">
+                    <!-- Club Pic (Placeholder SVG) -->
+                    <div class="club-icon-container">
+                        <svg class="club-icon" style="color: #10b981;" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 6a1 1 0 011-1h10a1 1 0 011 1v10a1 1 0 01-1 1H5a1 1 0 01-1-1V6zM5 9h2a1 1 0 010 2H5v1h2a1 1 0 010 2H5v1h3a1 1 0 100-2H7v-1h1a1 1 0 100-2H7V9h1a1 1 0 100-2H5v2z"></path>
+                        </svg>
+                    </div>
+                    <!-- Club Details -->
+                    <div class="club-details">
+                        <div class="club-name">Photography Club</div>
+                        <div class="member-since">Member since: Nov 2023</div>
                     </div>
                 </div>
             </div>
         </section>
-
-        <!-- Clubs Section -->
-        <section id="clubs" class="dashboard-section">
-            <div class="page-header">
-                <h1 class="page-title">Clubs</h1>
-                <p class="page-subtitle">Find your community.</p>
-            </div>
-             <div class="tab-nav">
-                <button class="tab-button active" onclick="showTab('clubs', 'my-clubs', this)">My Clubs</button>
-                <button class="tab-button" onclick="showTab('clubs', 'discover-clubs', this)">Discover</button>
-            </div>
-
-            <!-- My Clubs -->
-            <div id="my-clubs" class="tab-content active">
-                <div class="grid-layout">
-                     <div class="card club-card">
-                        <img src="https://placehold.co/400x200/8b5cf6/ffffff?text=Tech" alt="Club" class="card-image">
-                        <h3 class="card-title">Tech Club</h3>
-                        <p style="color: #64748b; margin: 0.25rem 0; font-size: 0.875rem;">Member since Fall 2024.</p>
-                        <p class="card-description">We explore new technologies, host hackathons, and build cool projects.</p>
-                        <button class="card-button secondary">View Club Page</button>
-                    </div>
-                </div>
+        
+        <!-- 5. Your Details Section -->
+        <section id="your-details" style="margin-bottom: 3rem;">
+            <div class="sub-header">
+                <h3>Your Details</h3>
             </div>
             
-            <!-- Discover Clubs -->
-            <div id="discover-clubs" class="tab-content">
-                <div class="grid-layout">
-                    <div class="card club-card">
-                        <img src="https://placehold.co/400x200/ec4899/ffffff?text=Dance" alt="Club" class="card-image">
-                        <h3 class="card-title">Dance Club</h3>
-                        <p style="color: #64748b; margin: 0.25rem 0; font-size: 0.875rem;">Express yourself through movement.</p>
-                        <p class="card-description">All styles and skill levels are welcome to join our weekly sessions.</p>
-                        <button class="card-button">Join Club</button>
-                    </div>
-                    <div class="card club-card">
-                        <img src="https://placehold.co/400x200/22c55e/ffffff?text=Music" alt="Club" class="card-image">
-                        <h3 class="card-title">Music Club</h3>
-                        <p style="color: #64748b; margin: 0.25rem 0; font-size: 0.875rem;">The sound of campus life.</p>
-                        <p class="card-description">Join us for jam sessions, workshops, and live performances.</p>
-                        <button class="card-button">Join Club</button>
-                    </div>
+            <div class="details-card">
+                <div class="detail-row">
+                    <dt class="detail-label">Name</dt>
+                    <dd class="detail-value">Sunaina Sharma</dd>
+                </div>
+                <div class="detail-row">
+                    <dt class="detail-label">Email</dt>
+                    <dd class="detail-value">sunaina@chitkara.edu.in</dd>
+                </div>
+                <div class="detail-row">
+                    <dt class="detail-label">Contact Number</dt>
+                    <dd class="detail-value">123456789</dd>
+                </div>
+                <div class="detail-row">
+                    <dt class="detail-label">Department</dt>
+                    <dd class="detail-value">Computer Science</dd>
                 </div>
             </div>
         </section>
+
     </main>
-
-    <script>
-        const sections = document.querySelectorAll('.dashboard-section');
-        const mainNavLinks = document.querySelectorAll('.nav-links a');
-
-        function showSection(sectionId, clickedLink) {
-            sections.forEach(section => section.classList.remove('active'));
-            document.getElementById(sectionId).classList.add('active');
-
-            mainNavLinks.forEach(link => link.classList.remove('active'));
-            clickedLink.classList.add('active');
-        }
-
-        function showTab(sectionId, tabId, clickedButton) {
-            const section = document.getElementById(sectionId);
-
-            // Handle tab buttons
-            const tabButtons = section.querySelectorAll('.tab-button');
-            tabButtons.forEach(button => button.classList.remove('active'));
-            clickedButton.classList.add('active');
-
-            // Handle tab content
-            const tabContents = section.querySelectorAll('.tab-content');
-            tabContents.forEach(content => content.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
-        }
-    </script>
-    <script>
-        // Auth guard + header toggle for prototype auth (localStorage.userToken)
-        (function () {
-            function isLoggedIn() {
-                return !!localStorage.getItem('userToken');
-            }
-
-            // If user is not logged in, redirect to login page (prototype guard)
-            // Keep a return URL so user can come back after logging in
-            if (!isLoggedIn()) {
-                // Redirect only if current page is expected to be guarded
-                // (This file is the student dashboard and should be protected.)
-                const returnUrl = encodeURIComponent(window.location.pathname + window.location.search);
-                window.location.href = 'login.html?return=' + returnUrl;
-                return;
-            }
-
-            // If logged in, update header and show welcome name if present
-            document.addEventListener('DOMContentLoaded', () => {
-                const headerAction = document.getElementById('header-action');
-                if (headerAction) {
-                    headerAction.textContent = 'Logout';
-                    headerAction.href = '#';
-                    // Apply logout-button styling when acting as logout
-                    headerAction.classList.add('logout-button');
-                    headerAction.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        // Clear prototype token and send user to the public index page
-                        localStorage.removeItem('userToken');
-                        // Optional: clear stored username if any
-                        // localStorage.removeItem('userName');
-                        window.location.href = 'index.html';
-                    });
-                }
-
-                // Use stored name when available (stored by login.js), fallback to 'Shreya'
-                const name = localStorage.getItem('userName') || 'Shreya';
-                const subtitle = document.querySelector('.page-subtitle');
-                if (subtitle) subtitle.textContent = `Welcome back, ${name}!`;
-                // Ensure header-action doesn't keep logout styles when not appropriate
-                if (!headerAction) return;
-                // If we ever navigate back to login state, remove logout-button (handled by other pages)
-                // (no-op here because this block only runs when logged in)
-            });
-        })();
-    </script>
-    <script src="student_dashboard.js"></script>
-    <script src="rsvp.js"></script>
 </body>
 </html>
