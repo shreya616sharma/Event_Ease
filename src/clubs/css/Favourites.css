@@ -1,0 +1,44 @@
+.favorites {
+  width: 100%;
+  padding: 2rem 0;
+}
+
+.favorites h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #1e293b; /* Dark Slate */
+  margin-bottom: 2rem;
+  font-weight: 800;
+}
+
+/* Empty State */
+.favorites-empty {
+  text-align: center;
+  padding: 4rem 2rem;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 1.5rem;
+  margin: 2rem auto;
+  max-width: 600px;
+  border: 2px dashed #cbd5e1;
+}
+
+.favorites-empty h2 {
+  font-size: 1.5rem;
+  color: #64748b;
+  margin-bottom: 0.5rem;
+}
+
+.favorites-empty p {
+  color: #94a3b8;
+  font-size: 1rem;
+}
+
+/* Animation for elements appearing */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.clubs-grid > * {
+  animation: fadeIn 0.5s ease-out forwards;
+}

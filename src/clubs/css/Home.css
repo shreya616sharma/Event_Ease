@@ -1,0 +1,102 @@
+.home {
+  width: 100%;
+  padding-bottom: 4rem;
+}
+
+/* --- Search Bar Section --- */
+.search-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 2rem 0 3rem 0; /* Spacing around search bar */
+  
+  /* THIS CONTROLS THE SPACING BETWEEN INPUT AND BUTTON */
+  gap: 1rem; 
+}
+
+.search-input {
+  width: 100%;
+  max-width: 500px; /* Limits width for aesthetics */
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  color: #334155;
+  
+  /* Rounded Styling */
+  background: white;
+  border: 2px solid #ddd6fe;
+  border-radius: 50px; /* Fully rounded corners */
+  outline: none;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.search-input:focus {
+  border-color: #7c3aed;
+  box-shadow: 0 10px 15px -3px rgba(124, 58, 237, 0.2);
+}
+
+/* Minimalist Search Button */
+.search-button {
+  background: #7c3aed;
+  color: white;
+  border: none;
+  padding: 0 2rem; /* Padding inside the button */
+  height: 55px; /* Matching height with input including borders */
+  
+  /* ENSURE THIS IS 0 OR POSITIVE TO KEEP BUTTON SEPARATE */
+  margin-left: 0; 
+  
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  z-index: 2;
+  transition: background 0.2s, transform 0.2s;
+  box-shadow: 0 4px 6px -1px rgba(124, 58, 237, 0.3);
+}
+
+.search-button:hover {
+  background: #6d28d9;
+  transform: translateY(-2px);
+}
+
+/* --- Clubs Grid Layout --- */
+.clubs-grid {
+  /* 1. Constrain width to make cards horizontally smaller */
+  max-width: 1000px; 
+  margin: 0 auto;
+  
+  display: grid;
+  /* 2. Three cards per row */
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 2.5rem;
+}
+
+/* --- Responsive Breakpoints --- */
+@media (max-width: 1024px) {
+  .clubs-grid {
+    max-width: 800px;
+    grid-template-columns: repeat(2, 1fr); /* 2 cards on tablet */
+  }
+}
+
+@media (max-width: 640px) {
+  .clubs-grid {
+    grid-template-columns: 1fr; /* 1 card on mobile */
+    padding: 0 1rem;
+  }
+  
+  .search-form {
+    flex-direction: column; /* Stack input and button on very small screens */
+    padding: 0 1rem;
+  }
+
+  .search-input {
+    max-width: 100%; /* Full width on mobile */
+  }
+  
+  .search-button {
+    width: 100%; /* Full width button on mobile */
+  }
+}
